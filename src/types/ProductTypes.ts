@@ -1,10 +1,11 @@
 export interface ProductTypes {
   id: number;
   title: string;
-  image?: string;
+  images: string[];
   price: number;
   category: string;
-  rating: IItemRating;
+  rating: number;
+  thumbnail: string;
 }
 
 export interface IItemRating {
