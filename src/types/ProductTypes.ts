@@ -8,7 +8,7 @@ export interface ProductTypes {
   thumbnail: string;
 }
 
-export interface IItemRating {
-  rate: number;
-  count: number;
-}
+// export interface IItemRating {
+//   rate: number;
+//   count: number;
+// }
