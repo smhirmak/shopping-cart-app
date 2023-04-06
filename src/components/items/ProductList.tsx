@@ -9,27 +9,23 @@ type GetItemsResponse = {
   data: ProductTypes[];
 };
 
-const ProductList: React.FC = () => {
+const ProductList: React.FC<{ res: ProductTypes[] }> = ({ res }) => {
   const [items, setItems] = useState<ProductTypes[]>([]);
   const [rawData, setRawData] = useState<ProductTypes[]>([]);
   const [categorys, setCategorys] = useState<string[]>([]);
   const array: string[] = [];
 
   useEffect(() => {
-    axios
-      .get<GetItemsResponse>('https://dummyjson.com/products')
-      .then((response: AxiosResponse) => {
-        setItems(response.data.products);
-        setRawData(response.data.products);
-        response.data.products.map((item: ProductTypes) => {
-          if (array.includes(item.category)) {
-            return;
-          } else {
-            array.push(item.category);
-          }
-        });
-        setCategorys(array);
-      });
+    setItems(res);
+    setRawData(res);
+    res.map((item: ProductTypes) => {
+      if (array.includes(item.category)) {
+        return;
+      } else {
+        array.push(item.category);
+      }
+    });
+    setCategorys(array);
   }, []);
 
   return (
@@ -39,6 +35,8 @@ const ProductList: React.FC = () => {
           {categorys.map((category: any, i: number) => (
             <Button
               key={i}
+              variant="contained"
+              sx={{ margin: '2px' }}
               onClick={() => {
                 const filteredList = rawData.slice().filter((each) => each.category === category);
                 setItems(filteredList);
@@ -58,6 +56,9 @@ const ProductList: React.FC = () => {
             //   inputProps={{ 'aria-label': 'primary checkbox' }}
             // />
           ))}
+          <Button variant="outlined" sx={{ margin: '2px' }} onClick={() => setItems(rawData)}>
+            No Filter
+          </Button>
         </Grid>
         <Grid container item xs={10} spacing={3}>
           {items.map((item, i) => (
