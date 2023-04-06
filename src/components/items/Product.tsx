@@ -15,24 +15,26 @@ const Product: React.FC<{ item: ProductTypes }> = ({ item }) => {
       onMouseOver={() => setImageChange(item.images[2])}
       onMouseOut={() => setImageChange(item.thumbnail)}>
       <Box position={'relative'}>
-        <Box
-          px={'5px'}
-          borderRadius={'10px'}
-          position={'absolute'}
-          top={'0'}
-          right={'0'}
-          sx={{ backgroundColor: '#000', color: '#fff' }}>
-          Free Shipping
-        </Box>
+        {item.price > 45 && (
+          <Box
+            px={'5px'}
+            borderRadius={'10px'}
+            position={'absolute'}
+            top={'0'}
+            right={'0'}
+            sx={{ backgroundColor: '#000', color: '#fff' }}>
+            Free Shipping
+          </Box>
+        )}
       </Box>
-      <img height="200px" width="200px" src={imageChange} />
+      <img height="200px" width="221px" src={imageChange} />
       <CardContent>
-        <Box>
-          <Typography>{item.title}</Typography>
+        <Box  textAlign={'center'} >
+          <Typography noWrap>{item.title}</Typography>
           <Typography>{item.price}$</Typography>
-          <Rating name="size-small" value={item.rating} precision={0.5} size="small" readOnly />
+          <Rating sx={{marginTop: 3}} name="size-small" value={item.rating} precision={0.5} size="small" readOnly />
           <CardActions>
-            <Button variant="contained">Add to Cart</Button>
+            <Button sx={{marginTop:2}} fullWidth variant="contained" >Add to Cart</Button>
           </CardActions>
         </Box>
       </CardContent>

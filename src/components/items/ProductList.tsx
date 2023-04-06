@@ -5,9 +5,9 @@ import Product from './Product';
 import { ProductTypes } from '@/types/ProductTypes';
 import { Button, Container, Grid } from '@mui/material';
 
-type GetItemsResponse = {
-  data: ProductTypes[];
-};
+// type GetItemsResponse = {
+//   data: ProductTypes[];
+// };
 
 const ProductList: React.FC<{ res: ProductTypes[] }> = ({ res }) => {
   const [items, setItems] = useState<ProductTypes[]>([]);
