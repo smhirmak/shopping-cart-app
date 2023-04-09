@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
-import axios, { AxiosResponse } from 'axios';
 import Product from './Product';
 import { ProductTypes } from '@/types/ProductTypes';
-import { Button, Container, Grid } from '@mui/material';
-
-// type GetItemsResponse = {
-//   data: ProductTypes[];
-// };
+import { Button, Container, Grid, Box } from '@mui/material';
+import { CartContext } from '../context/cart-context';
 
 const ProductList: React.FC<{ res: ProductTypes[] }> = ({ res }) => {
   const [items, setItems] = useState<ProductTypes[]>([]);
   const [rawData, setRawData] = useState<ProductTypes[]>([]);
   const [categorys, setCategorys] = useState<string[]>([]);
   const array: string[] = [];
+  const cartContext = useContext(CartContext);
+  const state: any[] = cartContext.state;
+  const dispatch = cartContext.dispatch;
 
   useEffect(() => {
     setItems(res);
@@ -28,6 +27,15 @@ const ProductList: React.FC<{ res: ProductTypes[] }> = ({ res }) => {
     setCategorys(array);
   }, []);
 
+  const filteredCategory = (category: string) => {
+    const filteredList = rawData.slice().filter((each) => each.category === category);
+    setItems(filteredList);
+  };
+
+  const total = state.reduce((total, item: ProductTypes) => {
+    return (total + item.price * item.quantity)
+  }, 0)
+
   return (
     <Container>
       <Grid container spacing={3}>
@@ -37,36 +45,61 @@ const ProductList: React.FC<{ res: ProductTypes[] }> = ({ res }) => {
               key={i}
               variant="contained"
               sx={{ margin: '2px' }}
-              onClick={() => {
-                const filteredList = rawData.slice().filter((each) => each.category === category);
-                setItems(filteredList);
-              }}>
+              onClick={() => filteredCategory(category)}>
               {category}
             </Button>
-            // <Checkbox
-            //   key={i}
-            //   icon={
-            //     <Typography sx={{ backgroundColor: '#000', color: '#fff' }}>
-            //       {category}
-            //     </Typography>
-            //   }
-            //   checkedIcon={<Typography>{category}</Typography>}
-            //   defaultChecked
-            //   color="primary"
-            //   inputProps={{ 'aria-label': 'primary checkbox' }}
-            // />
           ))}
-          <Button variant="outlined" sx={{ margin: '2px' }} onClick={() => setItems(rawData)}>
-            No Filter
-          </Button>
+          {rawData !== items && (
+            <Button
+              color="error"
+              variant="outlined"
+              sx={{ margin: '2px' }}
+              onClick={() => setItems(rawData)}>
+              No Filter
+            </Button>
+          )}
         </Grid>
         <Grid container item xs={10} spacing={3}>
-          {items.map((item, i) => (
-            <Grid key={i} item xs={3} justifyContent="flex-end">
-              <Product item={item} />
-            </Grid>
-          ))}
+          {items.map((item, i) => {
+            item.quantity = 1;
+            return (
+              <Grid key={i} item xs={3} justifyContent="flex-end">
+                <Product item={item} />
+              </Grid>
+            );
+          })}
         </Grid>
+
+        <Box>
+          {state.map((item: ProductTypes, index) => {
+            return (
+              <div key={index}>
+                <img src={item.thumbnail} alt="" />
+                <p>{item.title}</p>
+                <p>{item.quantity * item.price}$</p>
+
+                <div>
+                  <button onClick={() => dispatch({ type: 'INCREASE', payload: item })}>+</button>
+                  <p>{item.quantity}</p>
+                  <button
+                    onClick={() => {
+                      if (item?.quantity > 1) {
+                        dispatch({ type: 'DECREASE', payload: item });
+                      } else {
+                        dispatch({ type: 'REMOVE', payload: item })
+                      }
+                    }}>
+                    -
+                  </button>
+                </div>
+                <button onClick={() => dispatch({ type: 'REMOVE', payload: item })}>X</button>
+              </div>
+            );
+          })}
+          <div>
+            {state.length > 0 && <div><h3>Total: {total}</h3></div>}
+          </div>
+        </Box>
       </Grid>
     </Container>
   );

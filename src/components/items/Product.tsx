@@ -1,13 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { ProductTypes } from '@/types/ProductTypes';
 import { Box, Button, Card, CardActions, CardContent, Rating, Typography } from '@mui/material';
+import { CartContext } from '../context/cart-context';
 
 const Product: React.FC<{ item: ProductTypes }> = ({ item }) => {
   const [imageChange, setImageChange] = useState(item.thumbnail);
+  const cartContext = useContext(CartContext);
+  const dispatch = cartContext.dispatch;
 
   useEffect(() => {
     setImageChange(item.thumbnail);
   }, [item]);
+
+  // const addToCartHandler = ({id, price, stock}:IProdInfo) => {
+  //   //Add to Cart butonuna basıldığında aktif olacak ve o an ki ürünün bilgileri alınacak
+  //   //Context den gelen set fonku ile bu veriler state de ki ilsteye atanacak
+  //   //Ardından bu bilgiler basket componentine gönderilip gerekli işlemleri yapacak
+
+  // }
 
   return (
     <Card
@@ -29,12 +39,25 @@ const Product: React.FC<{ item: ProductTypes }> = ({ item }) => {
       </Box>
       <img height="200px" width="221px" src={imageChange} />
       <CardContent>
-        <Box  textAlign={'center'} >
+        <Box display={'flex'} flexDirection={'column'} alignItems={'center'} textAlign={'center'}>
           <Typography noWrap>{item.title}</Typography>
-          <Typography>{item.price}$</Typography>
-          <Rating sx={{marginTop: 3}} name="size-small" value={item.rating} precision={0.5} size="small" readOnly />
+          <Typography marginTop={1.5}>{item.price}$</Typography>
+          <Rating
+            sx={{ marginTop: 1.5 }}
+            name="size-small"
+            value={item.rating}
+            precision={0.5}
+            size="small"
+            readOnly
+          />
           <CardActions>
-            <Button sx={{marginTop:2}} fullWidth variant="contained" >Add to Cart</Button>
+            <Button
+              sx={{ marginTop: 1 }}
+              fullWidth
+              variant="contained"
+              onClick={() => dispatch({ type: 'ADD', payload: item })}>
+              Add to Cart
+            </Button>
           </CardActions>
         </Box>
       </CardContent>

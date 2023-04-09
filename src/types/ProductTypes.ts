@@ -6,19 +6,11 @@ export interface ProductTypes {
   category: string;
   rating: number;
   thumbnail: string;
-}
-
-export interface IProdInfo {
-  id: number;
-  price: number;
   stock: number;
+  quantity: number 
 }
 
-export interface BasketContextType {
-  product: IProdInfo[];
-  addBasket: () => void;
-  removeBasket: () => void;
-}
+
 
 // export interface IItemRating {
 //   rate: number;

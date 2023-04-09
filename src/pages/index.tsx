@@ -1,18 +1,18 @@
-import axios, { AxiosResponse } from 'axios';
+import { useContext } from 'react';
+import axios from 'axios';
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import { Typography } from '@mui/material';
 
 import { ProductTypes } from '@/types/ProductTypes';
 import ProductList from '@/components/items/ProductList';
+import { ContextProvider } from '@/components/context/cart-context';
 
-type GetItemsResponse = {
-  data: ProductTypes[];
-};
 
 const Home: React.FC<{ response: ProductTypes[] | any }> = ({ response }) => {
+
   return (
-    <>
+    <ContextProvider>
       <Head>
         <title>Shopping Cart App</title>
         <meta name="description" content="Shopping cart app" />
@@ -20,7 +20,7 @@ const Home: React.FC<{ response: ProductTypes[] | any }> = ({ response }) => {
         <link rel="icon" href="pngegg.png" />
       </Head>
       {response.error ? <Typography>{response.error}</Typography> : <ProductList res={response} />}
-    </>
+    </ContextProvider>
   );
 };
 
