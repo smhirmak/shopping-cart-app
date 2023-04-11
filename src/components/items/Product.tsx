@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ProductTypes } from '@/types/ProductTypes';
-import { Box, Button, Card, CardActions, CardContent, Rating, Typography } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, Drawer, Rating, Typography } from '@mui/material';
 import { CartContext } from '../context/cart-context';
 
 const Product: React.FC<{ item: ProductTypes }> = ({ item }) => {
@@ -39,6 +39,7 @@ const Product: React.FC<{ item: ProductTypes }> = ({ item }) => {
       </Box>
       <img height="200px" width="221px" src={imageChange} />
       <CardContent>
+
         <Box display={'flex'} flexDirection={'column'} alignItems={'center'} textAlign={'center'}>
           <Typography noWrap>{item.title}</Typography>
           <Typography marginTop={1.5}>{item.price}$</Typography>

@@ -9,7 +9,6 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
       <Box sx={{ backgroundColor: '#EAEAEA' }}>
         <ThemeProvider theme={theme}>
-          <Header />
           <Component {...pageProps} />
         </ThemeProvider>
       </Box>

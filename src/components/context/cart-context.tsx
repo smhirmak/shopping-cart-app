@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 
 interface IAction {
   type: string;
@@ -19,19 +19,21 @@ interface IChildrenType {
   children: React.ReactNode;
 }
 
+
 export const CartContext = React.createContext<IContextType>({ dispatch: (each) => {}, state: [] });
 
 export const ContextProvider: React.FC<IChildrenType> = ({ children }) => {
+
   const reducer = (state: any[], action: IAction) => {
     switch (action.type) {
       case 'ADD':
         const tempState = state.filter((item) => action.payload.id === item.id);
         if (tempState.length > 0) {
-          // localStorage.setItem('add', state);
           return state;
         } else {
           return [...state, action.payload];
         }
+
       case 'INCREASE':
         const tempState1 = state.map((item) => {
           if (item.id === action.payload.id) {
@@ -54,7 +56,6 @@ export const ContextProvider: React.FC<IChildrenType> = ({ children }) => {
 
       case 'REMOVE':
         const tempState3 = state.filter((item) => item.id !== action.payload.id);
-
         return tempState3;
 
       default:
