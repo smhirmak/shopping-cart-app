@@ -1,13 +1,10 @@
 import { ProductTypes } from '@/types/ProductTypes';
 import { Box, Card, CardContent, Rating, Typography } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AddToCartButton from '../buttons/AddToCartButton';
-import { CartContext } from '../context/cart-context';
 
 const Product: React.FC<{ item: ProductTypes }> = ({ item }) => {
   const [imageChange, setImageChange] = useState(item.thumbnail);
-  const cartContext = useContext(CartContext);
-  const dispatch = cartContext.dispatch;
 
   useEffect(() => {
     setImageChange(item.thumbnail);

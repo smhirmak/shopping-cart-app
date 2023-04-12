@@ -8,11 +8,6 @@ interface IAction {
 export interface IContextType {
   state: any[];
   dispatch: React.Dispatch<IAction>;
-  // items: number[];
-  // totalPrice: number;
-  // addItem: (item: string) => void;
-  // removeItem: (id: number) => void;
-  // clearCart: () => void;
 }
 
 interface IChildrenType {
@@ -51,12 +46,6 @@ export const ContextProvider: React.FC<IChildrenType> = ({ children }) => {
           }
         });
         return tempState2;
-
-      // case 'ITEMS':
-      //   const tempState4 = state.map((item) => {
-      //     [...state, action.payload];
-      //   });
-      //   return tempState4;
 
       case 'REMOVE':
         const tempState3 = state.filter((item) => item.id !== action.payload.id);

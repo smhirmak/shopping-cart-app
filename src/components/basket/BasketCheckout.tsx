@@ -1,7 +1,7 @@
-import { Button, Grid, Typography } from '@mui/material';
-import React, { useContext } from 'react';
-import { CartContext } from '../context/cart-context';
 import { ProductTypes } from '@/types/ProductTypes';
+import { Button, Grid, Typography } from '@mui/material';
+import { useContext } from 'react';
+import { CartContext } from '../context/cart-context';
 
 const BasketCheckout = () => {
   const cartContext = useContext(CartContext);

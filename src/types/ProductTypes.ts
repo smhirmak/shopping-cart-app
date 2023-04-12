@@ -7,12 +7,5 @@ export interface ProductTypes {
   rating: number;
   thumbnail: string;
   stock: number;
-  quantity: number 
+  quantity: number;
 }
-
-
-
-// export interface IItemRating {
-//   rate: number;
-//   count: number;
-// }
