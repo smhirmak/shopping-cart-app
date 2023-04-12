@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useState } from 'react';
+import React, { useReducer } from 'react';
 
 interface IAction {
   type: string;
@@ -19,11 +19,9 @@ interface IChildrenType {
   children: React.ReactNode;
 }
 
-
 export const CartContext = React.createContext<IContextType>({ dispatch: (each) => {}, state: [] });
 
 export const ContextProvider: React.FC<IChildrenType> = ({ children }) => {
-
   const reducer = (state: any[], action: IAction) => {
     switch (action.type) {
       case 'ADD':
@@ -53,6 +51,12 @@ export const ContextProvider: React.FC<IChildrenType> = ({ children }) => {
           }
         });
         return tempState2;
+
+      // case 'ITEMS':
+      //   const tempState4 = state.map((item) => {
+      //     [...state, action.payload];
+      //   });
+      //   return tempState4;
 
       case 'REMOVE':
         const tempState3 = state.filter((item) => item.id !== action.payload.id);

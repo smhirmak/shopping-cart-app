@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
 import { ProductTypes } from '@/types/ProductTypes';
-import { Box, Button, Card, CardActions, CardContent, Drawer, Rating, Typography } from '@mui/material';
+import { Box, Card, CardContent, Rating, Typography } from '@mui/material';
+import React, { useContext, useEffect, useState } from 'react';
+import AddToCartButton from '../buttons/AddToCartButton';
 import { CartContext } from '../context/cart-context';
 
 const Product: React.FC<{ item: ProductTypes }> = ({ item }) => {
@@ -11,13 +12,6 @@ const Product: React.FC<{ item: ProductTypes }> = ({ item }) => {
   useEffect(() => {
     setImageChange(item.thumbnail);
   }, [item]);
-
-  // const addToCartHandler = ({id, price, stock}:IProdInfo) => {
-  //   //Add to Cart butonuna basıldığında aktif olacak ve o an ki ürünün bilgileri alınacak
-  //   //Context den gelen set fonku ile bu veriler state de ki ilsteye atanacak
-  //   //Ardından bu bilgiler basket componentine gönderilip gerekli işlemleri yapacak
-
-  // }
 
   return (
     <Card
@@ -39,8 +33,7 @@ const Product: React.FC<{ item: ProductTypes }> = ({ item }) => {
       </Box>
       <img height="200px" width="221px" src={imageChange} />
       <CardContent>
-
-        <Box display={'flex'} flexDirection={'column'} alignItems={'center'} textAlign={'center'}>
+        <Box display={'block'} flexDirection={'column'} alignItems={'center'} textAlign={'center'}>
           <Typography noWrap>{item.title}</Typography>
           <Typography marginTop={1.5}>{item.price}$</Typography>
           <Rating
@@ -51,15 +44,7 @@ const Product: React.FC<{ item: ProductTypes }> = ({ item }) => {
             size="small"
             readOnly
           />
-          <CardActions>
-            <Button
-              sx={{ marginTop: 1 }}
-              fullWidth
-              variant="contained"
-              onClick={() => dispatch({ type: 'ADD', payload: item })}>
-              Add to Cart
-            </Button>
-          </CardActions>
+          <AddToCartButton item={item} />
         </Box>
       </CardContent>
     </Card>
