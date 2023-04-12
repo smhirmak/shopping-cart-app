@@ -3,7 +3,10 @@ import { Box, Card, CardContent, Rating, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import AddToCartButton from '../buttons/AddToCartButton';
 
-const Product: React.FC<{ item: ProductTypes }> = ({ item }) => {
+const Product: React.FC<{
+  item: ProductTypes;
+  setAnchor: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ item, setAnchor }) => {
   const [imageChange, setImageChange] = useState(item.thumbnail);
 
   useEffect(() => {
@@ -41,7 +44,7 @@ const Product: React.FC<{ item: ProductTypes }> = ({ item }) => {
             size="small"
             readOnly
           />
-          <AddToCartButton item={item} />
+          <AddToCartButton item={item} setAnchor={setAnchor} />
         </Box>
       </CardContent>
     </Card>

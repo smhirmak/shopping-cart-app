@@ -26,7 +26,7 @@ const Home: React.FC<{ response: ProductTypes[] | any }> = ({ response }) => {
       <ContextProvider>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <BasketButton setAnchor={setAnchor} />
+            <BasketButton setAnchor={setAnchor} badge={true} text="| SEPET" />
           </Grid>
           <Grid item marginLeft={0} xs={2}>
             <Category res={response} items={items} setItems={setItems} />
@@ -35,7 +35,7 @@ const Home: React.FC<{ response: ProductTypes[] | any }> = ({ response }) => {
             {response.error ? (
               <Typography>{response.error}</Typography>
             ) : (
-              <ProductList items={items} />
+              <ProductList items={items} setAnchor={setAnchor} />
             )}
           </Grid>
         </Grid>
