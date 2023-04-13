@@ -10,7 +10,7 @@ const BasketHeader = () => {
         </Badge>
       </Icon>
       <Typography variant="h4" margin={1} padding={2.5}>
-        Sepet
+        Cart
       </Typography>
     </Box>
   );

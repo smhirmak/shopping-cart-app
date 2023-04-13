@@ -13,7 +13,6 @@ import { useState } from 'react';
 
 const Home: React.FC<{ response: ProductTypes[] | any }> = ({ response }) => {
   const [items, setItems] = useState<ProductTypes[]>([]);
-  const [anchor, setAnchor] = useState(false);
 
   return (
     <Container>
@@ -26,7 +25,7 @@ const Home: React.FC<{ response: ProductTypes[] | any }> = ({ response }) => {
       <ContextProvider>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <BasketButton setAnchor={setAnchor} badge={true} text="| SEPET" />
+            <BasketButton badge={true} text="| Cart" />
           </Grid>
           <Grid item marginLeft={0} xs={2}>
             <Category res={response} items={items} setItems={setItems} />
@@ -35,11 +34,11 @@ const Home: React.FC<{ response: ProductTypes[] | any }> = ({ response }) => {
             {response.error ? (
               <Typography>{response.error}</Typography>
             ) : (
-              <ProductList items={items} setAnchor={setAnchor} />
+              <ProductList items={items} />
             )}
           </Grid>
         </Grid>
-        <Basket anchor={anchor} setAnchor={setAnchor} />
+        <Basket />
       </ContextProvider>
     </Container>
   );

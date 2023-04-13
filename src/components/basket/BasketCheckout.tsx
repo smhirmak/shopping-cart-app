@@ -1,12 +1,11 @@
 import { ProductTypes } from '@/types/ProductTypes';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import { useContext } from 'react';
 import { CartContext } from '../context/cart-context';
-import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 
 const BasketCheckout = () => {
-  const cartContext = useContext(CartContext);
-  const state = cartContext.state;
+  const { state } = useContext(CartContext);
 
   const total = state.reduce((total, item: ProductTypes) => {
     return total + item.price * item.quantity;
@@ -47,7 +46,7 @@ const BasketCheckout = () => {
           mt={10}>
           <ProductionQuantityLimitsIcon fontSize="large" />
           <Typography variant="h4" mt={3}>
-            Sepetiniz Boş
+            Cart is Empty
           </Typography>
         </Box>
       )}

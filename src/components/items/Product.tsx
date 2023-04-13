@@ -5,8 +5,7 @@ import AddToCartButton from '../buttons/AddToCartButton';
 
 const Product: React.FC<{
   item: ProductTypes;
-  setAnchor: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ item, setAnchor }) => {
+}> = ({ item }) => {
   const [imageChange, setImageChange] = useState(item.thumbnail);
 
   useEffect(() => {
@@ -44,7 +43,7 @@ const Product: React.FC<{
             size="small"
             readOnly
           />
-          <AddToCartButton item={item} setAnchor={setAnchor} />
+          <AddToCartButton item={item} />
         </Box>
       </CardContent>
     </Card>

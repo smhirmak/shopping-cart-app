@@ -6,15 +6,14 @@ import Product from './Product';
 
 const ProductList: React.FC<{
   items: ProductTypes[];
-  setAnchor: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ items, setAnchor }) => {
+}> = ({ items }) => {
   return (
     <>
       {items.map((item, i) => {
         item.quantity = 1;
         return (
           <Grid item key={i} xs={3} justifyContent="flex-end">
-            <Product item={item} setAnchor={setAnchor} />
+            <Product item={item} />
           </Grid>
         );
       })}

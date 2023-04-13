@@ -9,12 +9,9 @@ import BasketCheckout from './BasketCheckout';
 import BasketHeader from './BasketHeader';
 import BasketProductImage from './BasketProductImage';
 
-const Basket: React.FC<{
-  anchor: boolean;
-  setAnchor: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ anchor, setAnchor }) => {
-  const cartContext = useContext(CartContext);
-  const state = cartContext.state;
+const Basket: React.FC<{}> = () => {
+  const { state, anchor, setAnchor } = useContext(CartContext);
+
   return (
     <Box>
       <Drawer

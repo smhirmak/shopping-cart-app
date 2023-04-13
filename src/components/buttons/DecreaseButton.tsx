@@ -5,8 +5,8 @@ import React, { useContext } from 'react';
 import { CartContext } from '../context/cart-context';
 
 const DecreaseButton: React.FC<{ item: ProductTypes }> = ({ item }) => {
-  const cartContext = useContext(CartContext);
-  const dispatch = cartContext.dispatch;
+  const { dispatch } = useContext(CartContext);
+
   return (
     <Button
       size="small"

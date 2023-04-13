@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 
 interface IAction {
   type: string;
@@ -8,13 +8,20 @@ interface IAction {
 export interface IContextType {
   state: any[];
   dispatch: React.Dispatch<IAction>;
+  anchor: boolean;
+  setAnchor: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface IChildrenType {
   children: React.ReactNode;
 }
 
-export const CartContext = React.createContext<IContextType>({ dispatch: (each) => {}, state: [] });
+export const CartContext = React.createContext<IContextType>({
+  dispatch: (each) => {},
+  state: [],
+  anchor: false,
+  setAnchor: (each) => {}
+});
 
 export const ContextProvider: React.FC<IChildrenType> = ({ children }) => {
   const reducer = (state: any[], action: IAction) => {
@@ -56,8 +63,13 @@ export const ContextProvider: React.FC<IChildrenType> = ({ children }) => {
     }
   };
   const [state, dispatch] = useReducer(reducer, []);
+  const [anchor, setAnchor] = useState<boolean>(false);
 
-  const info = { state, dispatch };
+  // const info = { state, dispatch, anchorDeneme, setAnchorDeneme };
 
-  return <CartContext.Provider value={info}>{children}</CartContext.Provider>;
+  return (
+    <CartContext.Provider value={{ state, dispatch, anchor, setAnchor }}>
+      {children}
+    </CartContext.Provider>
+  );
 };

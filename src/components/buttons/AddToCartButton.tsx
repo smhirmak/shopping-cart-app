@@ -2,18 +2,16 @@ import { ProductTypes } from '@/types/ProductTypes';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import { Button, CardActions, Container, Grid, Modal, Typography } from '@mui/material';
+import { Box, Button, CardActions, Container, Grid, Modal, Typography } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../context/cart-context';
 import BasketButton from './BasketButton';
 
 const AddToCartButton: React.FC<{
   item: ProductTypes;
-  setAnchor: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ item, setAnchor }) => {
+}> = ({ item }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const cartContext = useContext(CartContext);
-  const dispatch = cartContext.dispatch;
+  const { dispatch } = useContext(CartContext);
 
   const handleOpen = () => {
     dispatch({ type: 'ADD', payload: item });
@@ -60,26 +58,22 @@ const AddToCartButton: React.FC<{
                 component="h6"
                 sx={{ color: '#388e3c', mb: 1 }}>
                 <CheckCircleIcon color="success" sx={{ mr: 1 }} />
-                Ürün başarıyla sepete eklendi
+                Product Successfully Added to Cart
               </Typography>
               <Typography sx={{ mb: 1 }}>{item.title}</Typography>
               <Typography display={'flex'} justifyContent={'center'} alignItems={'center'}>
-                Satıcı: {item.brand} <LocalShippingIcon sx={{ ml: 1 }} />
+                Seller: {item.brand} <LocalShippingIcon sx={{ ml: 1 }} />
               </Typography>
             </Grid>
-            <Grid
-              item
-              xs={3}
-              display={'flex'}
-              flexDirection={'column'}
-              alignItems={'center'}
-              justifyContent={'center'}>
-              <Button onClick={handleClose}>
-                <BasketButton setAnchor={setAnchor} text="Sepete Git" badge={false} />
-              </Button>
-              <Button variant="contained" onClick={handleClose}>
-                Alışverişe Devam Et
-              </Button>
+            <Grid item xs={3}>
+              <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
+                <Button onClick={handleClose} sx={{ mb: 0.5 }}>
+                  <BasketButton text="Go to Cart" badge={false} />
+                </Button>
+                <Button variant="contained" onClick={handleClose} sx={{ mt: 0.5 }}>
+                  Continue Shopping
+                </Button>
+              </Box>
             </Grid>
           </Grid>
         </Container>
