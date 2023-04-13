@@ -1,10 +1,10 @@
-import { ProductTypes } from '@/types/ProductTypes';
+import { IProduct } from '@/types/IProduct';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { Button } from '@mui/material';
 import React, { useContext } from 'react';
 import { CartContext } from '../context/cart-context';
 
-const DecreaseButton: React.FC<{ item: ProductTypes }> = ({ item }) => {
+const DecreaseButton: React.FC<{ item: IProduct }> = ({ item }) => {
   const { dispatch } = useContext(CartContext);
 
   return (

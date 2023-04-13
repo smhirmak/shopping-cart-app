@@ -1,4 +1,4 @@
-import { ProductTypes } from '@/types/ProductTypes';
+import { IProduct } from '@/types/IProduct';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
@@ -8,13 +8,17 @@ import { CartContext } from '../context/cart-context';
 import BasketButton from './BasketButton';
 
 const AddToCartButton: React.FC<{
-  item: ProductTypes;
+  item: IProduct;
 }> = ({ item }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { dispatch } = useContext(CartContext);
 
   const handleOpen = () => {
-    dispatch({ type: 'ADD', payload: item });
+    if (item.quantity === 1) {
+      dispatch({ type: 'ADD', payload: item });
+    } else {
+      dispatch({ type: 'INCREASE', payload: item });
+    }
     setIsOpen(() => true);
   };
 

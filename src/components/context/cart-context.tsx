@@ -5,25 +5,25 @@ interface IAction {
   payload: any;
 }
 
-export interface IContextType {
+export interface ICartContext {
   state: any[];
   dispatch: React.Dispatch<IAction>;
   anchor: boolean;
   setAnchor: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-interface IChildrenType {
+interface IChildren {
   children: React.ReactNode;
 }
 
-export const CartContext = React.createContext<IContextType>({
+export const CartContext = React.createContext<ICartContext>({
   dispatch: (each) => {},
   state: [],
   anchor: false,
   setAnchor: (each) => {}
 });
 
-export const ContextProvider: React.FC<IChildrenType> = ({ children }) => {
+export const CartContextProvider: React.FC<IChildren> = ({ children }) => {
   const reducer = (state: any[], action: IAction) => {
     switch (action.type) {
       case 'ADD':
@@ -64,8 +64,6 @@ export const ContextProvider: React.FC<IChildrenType> = ({ children }) => {
   };
   const [state, dispatch] = useReducer(reducer, []);
   const [anchor, setAnchor] = useState<boolean>(false);
-
-  // const info = { state, dispatch, anchorDeneme, setAnchorDeneme };
 
   return (
     <CartContext.Provider value={{ state, dispatch, anchor, setAnchor }}>

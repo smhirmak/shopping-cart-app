@@ -1,10 +1,10 @@
-import { ProductTypes } from '@/types/ProductTypes';
+import { IProduct } from '@/types/IProduct';
 import { Box, Card, CardContent, Rating, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import AddToCartButton from '../buttons/AddToCartButton';
 
 const Product: React.FC<{
-  item: ProductTypes;
+  item: IProduct;
 }> = ({ item }) => {
   const [imageChange, setImageChange] = useState(item.thumbnail);
 
@@ -30,7 +30,13 @@ const Product: React.FC<{
           </Box>
         )}
       </Box>
-      <img height="200px" width="221px" src={imageChange} />
+      <img
+        style={{
+          width: '260px',
+          height: '200px'
+        }}
+        src={imageChange}
+      />
       <CardContent>
         <Box display={'block'} flexDirection={'column'} alignItems={'center'} textAlign={'center'}>
           <Typography noWrap>{item.title}</Typography>

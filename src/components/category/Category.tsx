@@ -1,20 +1,20 @@
-import { ProductTypes } from '@/types/ProductTypes';
+import { IProduct } from '@/types/IProduct';
 import { Button } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
 const Category: React.FC<{
-  res: ProductTypes[];
-  items: any[];
-  setItems: React.Dispatch<React.SetStateAction<ProductTypes[]>>;
-}> = ({ res, items, setItems }) => {
+  res: IProduct[];
+  setItems: any;
+  items: IProduct[];
+}> = ({ res, setItems, items }) => {
   const [categorys, setCategorys] = useState<string[]>([]);
-  const [rawData, setRawData] = useState<ProductTypes[]>([]);
+  const [rawData, setRawData] = useState<IProduct[]>([]);
   const array: string[] = [];
 
   useEffect(() => {
     setItems(res);
     setRawData(res);
-    res.map((item: ProductTypes) => {
+    res.map((item: IProduct) => {
       if (array.includes(item.category)) {
         return;
       } else {

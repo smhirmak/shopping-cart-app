@@ -1,4 +1,4 @@
-export interface ProductTypes {
+export interface IProduct {
   id: number;
   title: string;
   images: string[];

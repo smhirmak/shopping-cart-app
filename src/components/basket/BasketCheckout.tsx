@@ -1,4 +1,4 @@
-import { ProductTypes } from '@/types/ProductTypes';
+import { IProduct } from '@/types/IProduct';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import { useContext } from 'react';
@@ -7,7 +7,7 @@ import { CartContext } from '../context/cart-context';
 const BasketCheckout = () => {
   const { state } = useContext(CartContext);
 
-  const total = state.reduce((total, item: ProductTypes) => {
+  const total = state.reduce((total, item: IProduct) => {
     return total + item.price * item.quantity;
   }, 0);
 

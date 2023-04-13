@@ -1,5 +1,5 @@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Badge, Box, Button } from '@mui/material';
+import { Badge, Box, Button, Divider } from '@mui/material';
 import React, { useContext } from 'react';
 import { CartContext } from '../context/cart-context';
 
@@ -21,6 +21,7 @@ const BasketButton: React.FC<{
             </Badge>
           )
         }>
+        {badge && <Divider sx={{ height: 28, bgcolor: '#fff', m: 1 }} orientation="vertical" />}
         {text}
       </Button>
     </Box>

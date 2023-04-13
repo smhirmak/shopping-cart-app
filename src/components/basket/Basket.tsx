@@ -1,4 +1,4 @@
-import { ProductTypes } from '@/types/ProductTypes';
+import { IProduct } from '@/types/IProduct';
 import { Box, Drawer, Grid, Typography } from '@mui/material';
 import React, { useContext } from 'react';
 import DecreaseButton from '../buttons/DecreaseButton';
@@ -22,7 +22,7 @@ const Basket: React.FC<{}> = () => {
         open={anchor}
         onClose={(prev) => setAnchor(!prev)}>
         <BasketHeader />
-        {state.map((item: ProductTypes, index) => {
+        {state.map((item: IProduct, index) => {
           return (
             <Grid
               container
