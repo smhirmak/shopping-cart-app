@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { Box, Button, CardActions, Container, Grid, Modal, Typography } from '@mui/material';
 import React, { useContext, useState } from 'react';
-import { CartContext } from '../context/cart-context';
+import { CartContext } from '../../context/cart-context';
 import BasketButton from './BasketButton';
 
 const AddToCartButton: React.FC<{
@@ -40,7 +40,7 @@ const AddToCartButton: React.FC<{
 
   return (
     <CardActions>
-      <Button sx={{ mt: 1 }} fullWidth variant="contained" onClick={handleOpen}>
+      <Button sx={{ mt: 1 }} fullWidth variant="contained" color="success" onClick={handleOpen}>
         Add to Cart
       </Button>
       <Modal open={isOpen} onClose={handleClose}>
@@ -64,8 +64,14 @@ const AddToCartButton: React.FC<{
                 <CheckCircleIcon color="success" sx={{ mr: 1 }} />
                 Product Successfully Added to Cart
               </Typography>
-              <Typography sx={{ mb: 1 }}>{item.title}</Typography>
-              <Typography display={'flex'} justifyContent={'center'} alignItems={'center'}>
+              <Typography sx={{ mb: 1 }} color={'#7F7F7F'}>
+                {item.title}
+              </Typography>
+              <Typography
+                color={'#7F7F7F'}
+                display={'flex'}
+                justifyContent={'center'}
+                alignItems={'center'}>
                 Seller: {item.brand} <LocalShippingIcon sx={{ ml: 1 }} />
               </Typography>
             </Grid>
@@ -74,7 +80,7 @@ const AddToCartButton: React.FC<{
                 <Button onClick={handleClose} sx={{ mb: 0.5 }}>
                   <BasketButton text="Go to Cart" badge={false} />
                 </Button>
-                <Button variant="contained" onClick={handleClose} sx={{ mt: 0.5 }}>
+                <Button variant="contained" color="success" onClick={handleClose} sx={{ mt: 0.5 }}>
                   Continue Shopping
                 </Button>
               </Box>

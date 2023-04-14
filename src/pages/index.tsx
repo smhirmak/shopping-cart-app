@@ -1,15 +1,13 @@
-import { Box, Container, Grid, Typography } from '@mui/material';
+import { Box, Container, Divider, Grid, Typography } from '@mui/material';
 import axios from 'axios';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
 
 import Basket from '@/components/basket/Basket';
 import BasketButton from '@/components/buttons/BasketButton';
 import Category from '@/components/category/Category';
-import { CartContextProvider } from '@/components/context/cart-context';
 import ProductList from '@/components/products/ProductList';
-import SearchBar from '@/components/searchBar/SearchBar';
+import { CartContextProvider } from '@/context/cart-context';
 import { IProduct } from '@/types/IProduct';
 import { useState } from 'react';
 
@@ -21,23 +19,25 @@ const Home: React.FC<{ response: IProduct[] | any }> = ({ response }) => {
         <title>Shopping Cart App</title>
         <meta name="description" content="Shopping cart app" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="pngegg.png" />
+        <link rel="icon" href="shop-ico.png" />
       </Head>
-      <CartContextProvider>
+      <>
         <Grid container spacing={3}>
           <Grid container item xs={12}>
-            <Grid item xs={11} display={'flex'} alignItems={'center'} justifyContent={'center'}>
-              <Link href="/search?q=laptop">Search</Link>
-              <SearchBar />
-            </Grid>
-            <Grid item xs={1} display={'flex'}>
+            {/* <Grid item xs={12}>
+              <Box>
+                <Category res={response} setItems={setItems} items={items} />
+                <Divider light={true} sx={{ mt: 2, backgroundColor: '#E7E7E7' }} />
+              </Box>
+            </Grid> */}
+            {/* <Grid item xs={2} display={'flex'}>
               <Box justifyContent={'end'} alignItems={'center'}>
                 <BasketButton badge={true} text="Cart" />
               </Box>
-            </Grid>
+            </Grid> */}
           </Grid>
           <Grid item marginLeft={0} xs={2}>
-            <Category res={response} setItems={setItems} items={items} />
+            {/* <Category res={response} setItems={setItems} items={items} /> */}
           </Grid>
           {response.error ? (
             <Typography>{response.error}</Typography>
@@ -46,7 +46,7 @@ const Home: React.FC<{ response: IProduct[] | any }> = ({ response }) => {
           )}
         </Grid>
         <Basket />
-      </CartContextProvider>
+      </>
     </Container>
   );
 };

@@ -1,5 +1,5 @@
 import { IProduct } from '@/types/IProduct';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
 const Category: React.FC<{
@@ -9,36 +9,54 @@ const Category: React.FC<{
 }> = ({ res, setItems, items }) => {
   const [categorys, setCategorys] = useState<string[]>([]);
   const [rawData, setRawData] = useState<IProduct[]>([]);
-  const array: string[] = [];
+  const categoriesArray: string[] = [];
 
   useEffect(() => {
     setItems(res);
     setRawData(res);
     res.map((item: IProduct) => {
-      if (array.includes(item.category)) {
+      if (categoriesArray.includes(item.category)) {
         return;
       } else {
-        array.push(item.category);
+        categoriesArray.push(item.category);
       }
     });
-    setCategorys(array);
+    setCategorys(categoriesArray);
   }, []);
 
   const filteredCategory = (category: string) => {
     const filteredList = rawData.slice().filter((each) => each.category === category);
     setItems(filteredList);
   };
+
   return (
-    <>
+    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', pt: 1, pb: 1 }}>
+      {/* <Card sx={{ padding: 2, boxShadow: 4 }}> */}
+      {/* <Box display={'flex'} justifyContent={'center'} mb={2}>
+        <Typography variant="h5">Filter</Typography>
+      </Box> */}
+      {/* <Typography variant="h6" component={'h6'}>
+        Categories:
+      </Typography> */}
       {categorys.map((category: any, i: number) => (
-        <Button
-          key={i}
-          variant="contained"
-          sx={{ margin: '2px' }}
-          onClick={() => filteredCategory(category)}>
-          {category}
-        </Button>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+          <Button
+            key={i}
+            variant="contained"
+            color="success"
+            sx={{ margin: '2px' }}
+            onClick={() => filteredCategory(category)}>
+            {category}
+          </Button>
+        </Box>
       ))}
+
       {rawData !== items && (
         <Button
           color="error"
@@ -48,7 +66,7 @@ const Category: React.FC<{
           No Filter
         </Button>
       )}
-    </>
+    </Box>
   );
 };
 

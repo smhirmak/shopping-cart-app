@@ -14,7 +14,7 @@ const Product: React.FC<{
 
   return (
     <Card
-      sx={{ height: 400 }}
+      sx={{ height: 400, boxShadow: 5 }}
       onMouseOver={() => setImageChange(item.images[2])}
       onMouseOut={() => setImageChange(item.thumbnail)}>
       <Box position={'relative'}>

@@ -1,3 +1,4 @@
+import { IProduct } from '@/types/IProduct';
 import React, { useReducer, useState } from 'react';
 
 interface IAction {
@@ -10,6 +11,8 @@ export interface ICartContext {
   dispatch: React.Dispatch<IAction>;
   anchor: boolean;
   setAnchor: React.Dispatch<React.SetStateAction<boolean>>;
+  items: IProduct[];
+  setItems: React.Dispatch<React.SetStateAction<IProduct[]>>;
 }
 
 interface IChildren {
@@ -20,7 +23,9 @@ export const CartContext = React.createContext<ICartContext>({
   dispatch: (each) => {},
   state: [],
   anchor: false,
-  setAnchor: (each) => {}
+  setAnchor: (each) => {},
+  items: [],
+  setItems: () => {}
 });
 
 export const CartContextProvider: React.FC<IChildren> = ({ children }) => {
@@ -64,9 +69,10 @@ export const CartContextProvider: React.FC<IChildren> = ({ children }) => {
   };
   const [state, dispatch] = useReducer(reducer, []);
   const [anchor, setAnchor] = useState<boolean>(false);
+  const [items, setItems] = useState<IProduct[]>([]);
 
   return (
-    <CartContext.Provider value={{ state, dispatch, anchor, setAnchor }}>
+    <CartContext.Provider value={{ state, dispatch, anchor, setAnchor, items, setItems }}>
       {children}
     </CartContext.Provider>
   );

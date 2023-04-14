@@ -1,5 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { IconButton, TextField } from '@mui/material';
+import { IconButton, TextField, Typography } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
@@ -21,20 +21,39 @@ const SearchBar: React.FC = () => {
   };
 
   return (
-    <TextField
-      variant="outlined"
-      label="Search"
-      onChange={changeHandle}
-      value={searchText}
-      InputProps={{
-        endAdornment: (
-          <InputAdornment position="end">
-            <IconButton edge="end" color="primary" onClick={submitHandle}>
-              <SearchIcon />
-            </IconButton>
-          </InputAdornment>
-        )
-      }}></TextField>
+    <form>
+      <TextField
+        variant="outlined"
+        label="Search"
+        onChange={changeHandle}
+        value={searchText}
+        color="success"
+        size="medium"
+        sx={{ width: '400px', padding: 0, margin: 0 }}
+        InputProps={{
+          startAdornment: <SearchIcon />,
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                type="submit"
+                edge="end"
+                sx={{
+                  // bgcolor: 'GrayText',
+                  height: 56,
+                  // width: 100,
+                  borderBottomLeftRadius: 5,
+                  borderTopLeftRadius: 5,
+                  borderTopRightRadius: 10,
+                  borderBottomRightRadius: 10
+                }}
+                color="success"
+                onClick={submitHandle}>
+                <Typography>SEARCH</Typography>
+              </IconButton>
+            </InputAdornment>
+          )
+        }}></TextField>
+    </form>
   );
 };
 

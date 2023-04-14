@@ -1,12 +1,19 @@
 import ProductList from '@/components/products/ProductList';
 import { IProduct } from '@/types/IProduct';
 import axios from 'axios';
+import { Container, Grid } from '@mui/material';
 import { GetServerSideProps } from 'next';
 import React from 'react';
 
 const Search: React.FC<{ searchResponse: IProduct[] }> = ({ searchResponse }) => {
   console.log(searchResponse);
-  return <ProductList items={searchResponse}></ProductList>;
+  return (
+    <Container>
+      <Grid display={'flex'} justifyContent={'center'} alignItems={'center'} mt={3}>
+        <ProductList items={searchResponse}></ProductList>
+      </Grid>
+    </Container>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

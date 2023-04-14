@@ -3,9 +3,14 @@ import { Badge, Box, Icon, Typography } from '@mui/material';
 
 const BasketHeader = () => {
   return (
-    <Box padding={2} display={'flex'} alignItems={'row'} justifyContent={'center'} bgcolor={'#ccc'}>
-      <Icon sx={{ margin: 1, padding: 3, color: '#000' }}>
-        <Badge badgeContent={4} color="primary">
+    <Box
+      padding={2}
+      display={'flex'}
+      alignItems={'row'}
+      justifyContent={'center'}
+      bgcolor={'#2d2d2d'}>
+      <Icon sx={{ margin: 1, padding: 3, color: '#fff' }}>
+        <Badge badgeContent={4} color="success" sx={{ color: '#fff' }}>
           <ShoppingCartIcon fontSize="large" />
         </Badge>
       </Icon>
