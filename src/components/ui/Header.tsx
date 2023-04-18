@@ -6,8 +6,9 @@ import Category from '../category/Category';
 import { useContext } from 'react';
 import { CartContext } from '@/context/cart-context';
 
-const Header = () => {
+const Header: React.FC<{ categories: string[] }> = ({ categories }) => {
   const { items, setItems } = useContext(CartContext);
+  console.log(categories);
   return (
     <Container maxWidth={'xl'}>
       <Grid
@@ -43,6 +44,7 @@ const Header = () => {
         </Grid>
       </Grid>
       <Grid xs={12}>
+        <Typography>Category</Typography>
         <Category res={items} setItems={setItems} items={items} />
       </Grid>
     </Container>

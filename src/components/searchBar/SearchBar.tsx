@@ -16,7 +16,6 @@ const SearchBar: React.FC = () => {
   const submitHandle = (event: any) => {
     event.preventDefault();
     router.push(`/search?q=${searchText}`);
-    console.log(searchText);
     setSearchText('');
   };
 

@@ -13,6 +13,7 @@ import { useState } from 'react';
 
 const Home: React.FC<{ response: IProduct[] | any }> = ({ response }) => {
   const [items, setItems] = useState(response);
+  // console.log(categoriesResponse);
   return (
     <Container maxWidth={'xl'}>
       <Head>
@@ -51,6 +52,19 @@ const Home: React.FC<{ response: IProduct[] | any }> = ({ response }) => {
   );
 };
 
+// export const getStaticProps: GetStaticProps = async () => {
+//   const categoriesResponse = await axios
+//     .get('https://dummyjson.com/products/categories')
+//     .then((res) => res.data);
+
+//   const categories = categoriesResponse.slice(0, 5);
+//   return {
+//     props: {
+//       categories
+//     }
+//   };
+// };
+
 export const getStaticProps: GetStaticProps = async () => {
   const productsResponse = await axios
     .get('https://dummyjson.com/products')
@@ -59,10 +73,15 @@ export const getStaticProps: GetStaticProps = async () => {
       return { error: 'Error' };
     });
 
+  // const categoriesResponse = await axios
+  //   .get('https://dummyjson.com/products/categories')
+  //   .then((res) => res.data);
+
   const response = productsResponse.map((item: any) => ({ ...item, quantity: 1 }));
   return {
     props: {
       response
+      // categoriesResponse
     }
   };
 };
