@@ -9,7 +9,8 @@ import MediaLinks from '../links/MediaLinks';
 
 const Footer = () => {
   const trigger = useScrollTrigger({
-    threshold: 300
+    threshold: 300,
+    disableHysteresis: true
   });
 
   const scrollToTop = useCallback(() => {
@@ -58,21 +59,23 @@ const Footer = () => {
               <Typography variant="h5" color={'#fff'} mb={2}>
                 Social Media
               </Typography>
-              <MediaLinks
-                href="https://github.com/smhirmak"
-                name="GitHub"
-                icon={<GitHubIcon sx={{ mr: 1 }} />}
-              />
-              <MediaLinks
-                href="https://www.linkedin.com/in/muhammed-semih-irmak-307890152/"
-                name="LinkedIn"
-                icon={<LinkedInIcon sx={{ mr: 1 }} />}
-              />
-              <MediaLinks
-                href="https://twitter.com/smhirmak"
-                name="Twitter"
-                icon={<TwitterIcon sx={{ mr: 1 }} />}
-              />
+              <Box display={'flex'} flexDirection={'column'} alignItems={'start'}>
+                <MediaLinks
+                  href="https://github.com/smhirmak"
+                  name="GitHub"
+                  icon={<GitHubIcon sx={{ mr: 1 }} />}
+                />
+                <MediaLinks
+                  href="https://www.linkedin.com/in/muhammed-semih-irmak-307890152/"
+                  name="LinkedIn"
+                  icon={<LinkedInIcon sx={{ mr: 1 }} />}
+                />
+                <MediaLinks
+                  href="https://twitter.com/smhirmak"
+                  name="Twitter"
+                  icon={<TwitterIcon sx={{ mr: 1 }} />}
+                />
+              </Box>
             </Box>
           </Grid>
           <Grid item>

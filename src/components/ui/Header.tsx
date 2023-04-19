@@ -1,14 +1,15 @@
+import { IProduct } from '@/types/IProduct';
 import { Container, Grid, Typography } from '@mui/material';
 import Link from 'next/link';
+import Basket from '../basket/Basket';
 import BasketButton from '../buttons/BasketButton';
-import SearchBar from '../searchBar/SearchBar';
 import Category from '../category/Category';
-import { useContext } from 'react';
-import { CartContext } from '@/context/cart-context';
+import SearchBar from '../searchBar/SearchBar';
 
-const Header: React.FC<{ categories: string[] }> = ({ categories }) => {
-  const { items, setItems } = useContext(CartContext);
-  console.log(categories);
+const Header: React.FC<{ categories: string[]; products: IProduct[] }> = ({
+  categories,
+  products
+}) => {
   return (
     <Container maxWidth={'xl'}>
       <Grid
@@ -41,11 +42,11 @@ const Header: React.FC<{ categories: string[] }> = ({ categories }) => {
         </Grid>
         <Grid item xs={3} display={'flex'} justifyContent={'center'}>
           <BasketButton badge={true} text="Cart" />
+          <Basket />
         </Grid>
       </Grid>
       <Grid xs={12}>
-        <Typography>Category</Typography>
-        <Category res={items} setItems={setItems} items={items} />
+        <Category res={products} products={products} categories={categories} />
       </Grid>
     </Container>
   );

@@ -37,9 +37,7 @@ const SearchBar: React.FC = () => {
                 type="submit"
                 edge="end"
                 sx={{
-                  // bgcolor: 'GrayText',
                   height: 56,
-                  // width: 100,
                   borderBottomLeftRadius: 5,
                   borderTopLeftRadius: 5,
                   borderTopRightRadius: 10,

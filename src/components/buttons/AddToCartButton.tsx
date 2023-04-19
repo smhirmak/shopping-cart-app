@@ -14,11 +14,8 @@ const AddToCartButton: React.FC<{
   const { dispatch } = useContext(CartContext);
 
   const handleOpen = () => {
-    if (item.quantity === 1) {
-      dispatch({ type: 'ADD', payload: item });
-    } else {
-      dispatch({ type: 'INCREASE', payload: item });
-    }
+    dispatch({ type: 'ADD', payload: item });
+
     setIsOpen(() => true);
   };
 

@@ -1,10 +1,10 @@
 import { IProduct } from '@/types/IProduct';
 import { Box, Drawer, Grid, Typography } from '@mui/material';
 import React, { useContext } from 'react';
+import { CartContext } from '../../context/cart-context';
 import DecreaseButton from '../buttons/DecreaseButton';
 import IncreaseButton from '../buttons/IncreaseButton';
 import RemoveButton from '../buttons/RemoveButton';
-import { CartContext } from '../../context/cart-context';
 import BasketCheckout from './BasketCheckout';
 import BasketHeader from './BasketHeader';
 import BasketProductImage from './BasketProductImage';
