@@ -25,7 +25,6 @@ const BasketCheckout = () => {
           bottom={'0px'}
           boxSizing={'border-box'}
           zIndex={1}
-          bgcolor={'#2d2d2d'}
           padding={2}
           mt={state.length > 0 ? '0px' : '140px'}>
           <Grid item padding={'10px'} zIndex={'1'}>

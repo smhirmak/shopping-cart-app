@@ -7,7 +7,7 @@ const BasketButton: React.FC<{
   text: string;
   badge: boolean;
 }> = ({ text, badge }) => {
-  const { setAnchor } = useContext(CartContext);
+  const { setAnchor, totalQuantity } = useContext(CartContext);
 
   return (
     <Box display={'flex'} justifyContent={'flex-end'}>
@@ -17,7 +17,7 @@ const BasketButton: React.FC<{
         color="success"
         startIcon={
           badge && (
-            <Badge badgeContent={4} color="success">
+            <Badge badgeContent={totalQuantity} color="success">
               <ShoppingCartIcon sx={{ margin: '3px' }} />
             </Badge>
           )

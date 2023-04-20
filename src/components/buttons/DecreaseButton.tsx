@@ -3,25 +3,26 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import { Button } from '@mui/material';
 import React, { useContext } from 'react';
 import { CartContext } from '../../context/cart-context';
+import IconButton from '@mui/material/IconButton';
 
 const DecreaseButton: React.FC<{ item: IProduct }> = ({ item }) => {
-  const { dispatch } = useContext(CartContext);
+  const { dispatch, setTotalQuantity } = useContext(CartContext);
 
   return (
-    <Button
-      size="small"
+    <IconButton
       sx={{ margin: '2px' }}
-      variant="contained"
       color="error"
       onClick={() => {
         if (item?.quantity > 1) {
           dispatch({ type: 'DECREASE', payload: item });
+          item.quantity === 1 && setTotalQuantity(0);
         } else {
           dispatch({ type: 'REMOVE', payload: item });
+          setTotalQuantity(0);
         }
       }}>
-      <RemoveIcon />
-    </Button>
+      <RemoveIcon fontSize="small" />
+    </IconButton>
   );
 };
 

@@ -1,20 +1,21 @@
+import { CartContext } from '@/context/cart-context';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Badge, Box, Icon, Typography } from '@mui/material';
+import React, { useContext } from 'react';
 
-const BasketHeader = () => {
+const BasketHeader: React.FC = () => {
+  const { totalQuantity } = useContext(CartContext);
   return (
     <Box
       padding={2}
       display={'flex'}
-      alignItems={'row'}
-      justifyContent={'center'}
-      bgcolor={'#2d2d2d'}>
-      <Icon sx={{ margin: 1, padding: 3, color: '#fff' }}>
-        <Badge badgeContent={4} color="success" sx={{ color: '#fff' }}>
-          <ShoppingCartIcon fontSize="large" />
-        </Badge>
-      </Icon>
-      <Typography variant="h4" margin={1} padding={2.5}>
+      flexDirection={'row'}
+      alignItems={'center'}
+      justifyContent={'center'}>
+      <Badge badgeContent={totalQuantity} color="success">
+        <ShoppingCartIcon fontSize="large" />
+      </Badge>
+      <Typography variant="h4" ml={1} padding={2.5}>
         Cart
       </Typography>
     </Box>

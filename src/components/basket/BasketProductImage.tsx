@@ -1,9 +1,10 @@
 import { IProduct } from '@/types/IProduct';
+
 import React from 'react';
 
 const BasketProductImage: React.FC<{ item: IProduct }> = ({ item }) => {
   return (
-    <img width={'120px'} height={'120px'} style={{ padding: '10px' }} src={item.thumbnail} alt="" />
+    <img width={'150px'} height={'150px'} src={item.thumbnail} style={{ padding: 3 }} alt="" />
   );
 };
 

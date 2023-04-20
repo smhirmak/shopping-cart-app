@@ -13,6 +13,8 @@ export interface ICartContext {
   setAnchor: React.Dispatch<React.SetStateAction<boolean>>;
   items: IProduct[];
   setItems: React.Dispatch<React.SetStateAction<IProduct[]>>;
+  totalQuantity: number;
+  setTotalQuantity: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface IChildren {
@@ -25,7 +27,9 @@ export const CartContext = React.createContext<ICartContext>({
   anchor: false,
   setAnchor: (each) => {},
   items: [],
-  setItems: () => {}
+  setItems: () => {},
+  totalQuantity: 0,
+  setTotalQuantity: () => {}
 });
 
 export const CartContextProvider: React.FC<IChildren> = ({ children }) => {
@@ -70,9 +74,20 @@ export const CartContextProvider: React.FC<IChildren> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, []);
   const [anchor, setAnchor] = useState<boolean>(false);
   const [items, setItems] = useState<IProduct[]>([]);
+  const [totalQuantity, setTotalQuantity] = useState<number>(0);
 
   return (
-    <CartContext.Provider value={{ state, dispatch, anchor, setAnchor, items, setItems }}>
+    <CartContext.Provider
+      value={{
+        state,
+        dispatch,
+        anchor,
+        setAnchor,
+        items,
+        setItems,
+        totalQuantity,
+        setTotalQuantity
+      }}>
       {children}
     </CartContext.Provider>
   );

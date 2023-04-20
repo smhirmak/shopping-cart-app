@@ -30,7 +30,7 @@ export default function App(props: MyAppProps) {
   );
 }
 
-App.getInitialProps = async ({ req }: any) => {
+App.getInitialProps = async () => {
   const productsResponse = await axios
     .get('https://dummyjson.com/products')
     .then((res) => res.data.products);

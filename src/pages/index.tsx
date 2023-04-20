@@ -18,21 +18,10 @@ const Home: React.FC<{ products: IProduct[] | any }> = ({ products }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="shop-ico.png" />
       </Head>
-      <>
-        <Grid
-          container
-          spacing={3}
-          display={'flex'}
-          justifyContent={'center'}
-          alignItems={'center'}>
-          {products.error ? (
-            <Typography>{products.error}</Typography>
-          ) : (
-            <ProductList items={items} />
-          )}
-        </Grid>
-        <Basket />
-      </>
+      <Grid container spacing={3} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+        {products.error ? <Typography>{products.error}</Typography> : <ProductList items={items} />}
+      </Grid>
+      <Basket />
     </Container>
   );
 };

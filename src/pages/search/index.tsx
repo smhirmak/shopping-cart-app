@@ -7,9 +7,9 @@ import React from 'react';
 
 const Search: React.FC<{ searchResponse: IProduct[] }> = ({ searchResponse }) => {
   return (
-    <Container>
-      <Grid display={'flex'} justifyContent={'center'} alignItems={'center'} mt={3}>
-        <ProductList items={searchResponse}></ProductList>
+    <Container maxWidth={'xl'}>
+      <Grid container spacing={3} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+        <ProductList items={searchResponse} />
       </Grid>
     </Container>
   );
