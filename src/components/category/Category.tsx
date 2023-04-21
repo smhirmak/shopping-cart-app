@@ -1,6 +1,6 @@
 import { CartContext } from '@/context/cart-context';
 import { IProduct } from '@/types/IProduct';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Divider } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
 
 const Category: React.FC<{
@@ -9,6 +9,7 @@ const Category: React.FC<{
   products: IProduct[];
 }> = ({ res, categories, products }) => {
   const [rawData, setRawData] = useState<IProduct[]>([]);
+  const [isSelecet, setIsSelecet] = useState(true);
   const { items, setItems } = useContext(CartContext);
 
   useEffect(() => {
@@ -19,6 +20,12 @@ const Category: React.FC<{
   const filteredCategory = (category: string) => {
     const filteredList = products.slice().filter((each) => each.category === category);
     setItems(filteredList);
+    setIsSelecet(true);
+  };
+
+  const selectFilterHandle = () => {
+    setItems(rawData);
+    setIsSelecet(true);
   };
 
   return (
@@ -33,21 +40,29 @@ const Category: React.FC<{
             alignItems: 'center'
           }}>
           <Button
-            variant="contained"
-            color="success"
+            variant="text"
+            color={isSelecet ? 'inherit' : 'error'}
             sx={{ margin: '2px' }}
-            onClick={() => filteredCategory(category)}>
+            onClick={() => {
+              filteredCategory(category);
+              setIsSelecet(false);
+            }}>
             {category}
           </Button>
+          {i != categories.length - 1 && (
+            <Divider
+              variant="fullWidth"
+              orientation="vertical"
+              sx={{
+                flexGrow: 1
+              }}
+            />
+          )}
         </Box>
       ))}
 
       {rawData !== items && (
-        <Button
-          color="error"
-          variant="outlined"
-          sx={{ margin: '2px' }}
-          onClick={() => setItems(rawData)}>
+        <Button color="error" variant="text" sx={{ margin: '2px' }} onClick={selectFilterHandle}>
           No Filter
         </Button>
       )}

@@ -24,11 +24,18 @@ const BasketCheckout = () => {
           flexDirection={'column'}
           bottom={'0px'}
           boxSizing={'border-box'}
+          sx={{
+            backgroundColor: '#f4f4f4',
+            boxShadow: 5,
+            border: 1,
+            borderColor: '#d1d1d1',
+            borderRadius: 2
+          }}
           zIndex={1}
           padding={2}
           mt={state.length > 0 ? '0px' : '140px'}>
           <Grid item padding={'10px'} zIndex={'1'}>
-            <Typography>Total: {total}$</Typography>
+            <Typography color={'#000'}>Total: {total}$</Typography>
           </Grid>
           <Grid item>
             <Button variant="contained" color="error">

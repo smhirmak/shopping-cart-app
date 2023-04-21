@@ -1,20 +1,32 @@
 import { IProduct } from '@/types/IProduct';
-import { Box, Card, CardContent, Rating, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { Box, Button, Card, CardContent, Rating, Typography } from '@mui/material';
+import React, { useEffect, useState, useContext } from 'react';
 import AddToCartButton from '../buttons/AddToCartButton';
+import { useRouter } from 'next/router';
+import { CartContext } from '@/context/cart-context';
 
 const Product: React.FC<{
   item: IProduct;
 }> = ({ item }) => {
   const [imageChange, setImageChange] = useState(item.thumbnail);
+  const { isHover } = useContext(CartContext);
+
+  const router = useRouter();
 
   useEffect(() => {
     setImageChange(item.thumbnail);
   }, [item]);
 
+  const productCardClickHandle = () => {
+    {
+      isHover && router.push(`/${item.id}`);
+    }
+  };
+
   return (
     <Card
-      sx={{ height: 400, boxShadow: 5 }}
+      sx={{ height: 400, boxShadow: 5, cursor: 'pointer' }}
+      onClick={productCardClickHandle}
       onMouseOver={() => setImageChange(item.images[2])}
       onMouseOut={() => setImageChange(item.thumbnail)}>
       <Box position={'relative'}>

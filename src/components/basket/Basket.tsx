@@ -16,7 +16,7 @@ const Basket: React.FC<{}> = () => {
   return (
     <Box>
       <Drawer
-        PaperProps={{ style: { width: '650px' } }}
+        PaperProps={{ style: { width: '650px', backgroundColor: '#f4f4f4' } }}
         variant="temporary"
         sx={{ display: 'flex' }}
         anchor={'right'}
@@ -27,7 +27,15 @@ const Basket: React.FC<{}> = () => {
           total = total + item.quantity;
           setTotalQuantity(total);
           return (
-            <Box sx={{ border: 'Highlight', boxShadow: 5, marginY: 0.75 }}>
+            <Box
+              sx={{
+                border: 1,
+                borderRadius: 2,
+                boxShadow: 5,
+                borderColor: '#d1d1d1',
+                marginY: 0.75,
+                backgroundColor: '#fff'
+              }}>
               <Grid
                 container
                 key={index}
@@ -37,7 +45,7 @@ const Basket: React.FC<{}> = () => {
                   flexDirection: 'row',
                   alignItems: 'center'
                 }}>
-                <Grid container item xs={12}>
+                <Grid container item>
                   <Grid item xs={6}>
                     <Box
                       display={'flex'}
@@ -75,50 +83,67 @@ const Basket: React.FC<{}> = () => {
                       </Box>
                     )}
                   </Grid>
-                  <Grid xs={12}>
+                  <Grid item xs={12}>
                     <Divider variant="fullWidth" sx={{ margin: 1, fontSize: 100 }} />
                   </Grid>
                 </Grid>
                 <Grid
+                  container
                   item
-                  xs={3}
-                  display={'flex'}
-                  justifyContent={'center'}
-                  alignItems={'center'}
-                  marginLeft={'0px'}>
-                  <BasketProductImage item={item} />
-                </Grid>
-                <Grid item xs={3}>
-                  <Typography padding={'1rem'} variant="subtitle2">
-                    {item.title}
-                  </Typography>
-                </Grid>
-                <Grid item xs={1} display={'flex'} justifyContent={'center'} alignItems={'center'}>
-                  <Typography padding={'1rem'}>{item.quantity * item.price}$</Typography>
-                </Grid>
-                <Grid
-                  item
-                  xs={5}
                   display={'flex'}
                   flexDirection={'row'}
                   justifyContent={'center'}
                   alignItems={'center'}>
-                  <Box
+                  <Grid
+                    item
+                    xs={3}
+                    display={'flex'}
+                    justifyContent={'center'}
+                    alignItems={'center'}>
+                    <BasketProductImage item={item} />
+                  </Grid>
+                  <Divider orientation="vertical" flexItem={true} />
+                  <Grid item xs={3}>
+                    <Typography padding={'1rem'} variant="subtitle2">
+                      {item.title}
+                    </Typography>
+                  </Grid>
+                  <Divider orientation="vertical" flexItem={true} />
+                  <Grid
+                    item
+                    xs={1}
+                    display={'flex'}
+                    justifyContent={'center'}
+                    alignItems={'center'}
+                    paddingX={3}>
+                    <Typography>{item.quantity * item.price}$</Typography>
+                  </Grid>
+                  <Divider orientation="vertical" flexItem={true} />
+
+                  <Grid
+                    item
+                    xs={4.9}
                     display={'flex'}
                     flexDirection={'row'}
                     justifyContent={'center'}
-                    alignItems={'center'}
-                    borderRadius={6}
-                    border={1}>
-                    {item.quantity === 1 ? (
-                      <RemoveButton item={item} />
-                    ) : (
-                      <DecreaseButton item={item} />
-                    )}
-                    <Typography paddingX={1}>{item.quantity}</Typography>
-                    <IncreaseButton item={item} />
-                  </Box>
-                  {item.quantity !== 1 && <RemoveButton item={item} />}
+                    alignItems={'center'}>
+                    <Box
+                      display={'flex'}
+                      flexDirection={'row'}
+                      justifyContent={'center'}
+                      alignItems={'center'}
+                      borderRadius={6}
+                      border={1}>
+                      {item.quantity === 1 ? (
+                        <RemoveButton item={item} />
+                      ) : (
+                        <DecreaseButton item={item} />
+                      )}
+                      <Typography paddingX={1}>{item.quantity}</Typography>
+                      <IncreaseButton item={item} />
+                    </Box>
+                    {item.quantity !== 1 && <RemoveButton item={item} />}
+                  </Grid>
                 </Grid>
               </Grid>
             </Box>

@@ -20,7 +20,7 @@ const Footer = () => {
   return (
     <Box bgcolor={'#232F3E'}>
       <Container maxWidth={'xl'} sx={{ pb: 10 }}>
-        <Grid xs={12}>
+        <Grid container>
           {' '}
           <Zoom in={trigger}>
             <Box

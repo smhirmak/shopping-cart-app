@@ -1,5 +1,5 @@
 import { IProduct } from '@/types/IProduct';
-import { Container, Grid, Typography } from '@mui/material';
+import { Container, Divider, Grid, Typography } from '@mui/material';
 import Link from 'next/link';
 import Basket from '../basket/Basket';
 import BasketButton from '../buttons/BasketButton';
@@ -14,7 +14,6 @@ const Header: React.FC<{ categories: string[]; products: IProduct[] }> = ({
     <Container maxWidth={'xl'}>
       <Grid
         container
-        xs={12}
         display={'flex'}
         flexDirection={'row'}
         justifyContent={'center'}
@@ -45,9 +44,10 @@ const Header: React.FC<{ categories: string[]; products: IProduct[] }> = ({
           <Basket />
         </Grid>
       </Grid>
-      <Grid xs={12}>
+      <Grid container display={'flex'} justifyContent={'center'} alignItems={'center'}>
         <Category res={products} products={products} categories={categories} />
       </Grid>
+      <Divider sx={{ mb: 2 }} />
     </Container>
   );
 };

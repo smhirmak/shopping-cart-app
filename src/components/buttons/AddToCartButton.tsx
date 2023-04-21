@@ -11,12 +11,12 @@ const AddToCartButton: React.FC<{
   item: IProduct;
 }> = ({ item }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { dispatch } = useContext(CartContext);
+  const { dispatch, setIsHover } = useContext(CartContext);
 
   const handleOpen = () => {
     dispatch({ type: 'ADD', payload: item });
-
     setIsOpen(() => true);
+    console.log('Clicked');
   };
 
   const handleClose = () => {
@@ -37,13 +37,20 @@ const AddToCartButton: React.FC<{
 
   return (
     <CardActions>
-      <Button sx={{ mt: 1 }} fullWidth variant="contained" color="success" onClick={handleOpen}>
+      <Button
+        onMouseOver={() => setIsHover(false)}
+        onMouseOut={() => setIsHover(true)}
+        sx={{ mt: 1 }}
+        fullWidth
+        variant="contained"
+        color="success"
+        onClick={handleOpen}>
         Add to Cart
       </Button>
       <Modal open={isOpen} onClose={handleClose}>
         <Container sx={style}>
           <Grid container display={'flex'} justifyContent={'center'} alignItems={'center'} mb={5}>
-            <Grid xs={12} mb={'2rem'}>
+            <Grid item xs={12} mb={'2rem'}>
               <Button sx={{ borderRadius: '50%', height: '64px' }} onClick={handleClose}>
                 <CloseIcon sx={{ color: '#858585' }} fontSize="large" />
               </Button>
