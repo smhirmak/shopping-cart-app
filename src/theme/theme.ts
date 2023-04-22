@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material';
 import { Roboto } from 'next/font/google';
 
 const roboto = Roboto({
-  weight: ['300', '500', '900'],
+  weight: ['300', '400', '500', '700', '900'],
   subsets: ['latin'],
   display: 'swap',
   fallback: ['Arial']
