@@ -1,6 +1,8 @@
 import { CartContext } from '@/context/cart-context';
 import { IProduct } from '@/types/IProduct';
 import { Box, Button, ButtonGroup, Divider } from '@mui/material';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 
 const Category: React.FC<{
@@ -17,16 +19,14 @@ const Category: React.FC<{
     setRawData(res);
   }, []);
 
-  const filteredCategory = (category: string) => {
-    const filteredList = products.slice().filter((each) => each.category === category);
-    setItems(filteredList);
-    setIsSelecet(true);
-  };
-
   const selectFilterHandle = () => {
     setItems(rawData);
     setIsSelecet(true);
   };
+
+  const route = useRouter();
+  const { query } = route;
+  let currentCategoryName = query.categoryName;
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', pt: 1, pb: 1 }}>
@@ -40,14 +40,13 @@ const Category: React.FC<{
               justifyContent: 'center',
               alignItems: 'center'
             }}>
-            <Button
-              color={isSelecet ? 'inherit' : 'error'}
-              onClick={() => {
-                filteredCategory(category);
-                setIsSelecet(false);
-              }}>
-              {category}
-            </Button>
+            <Link href={`/category/${category}`}>
+              <Button
+                color={currentCategoryName !== category ? 'success' : 'error'}
+                sx={{ textDecoration: 'none' }}>
+                {category}
+              </Button>
+            </Link>
 
             {i != categories.length - 1 && (
               <Divider
@@ -61,7 +60,7 @@ const Category: React.FC<{
           </Box>
         ))}
 
-        {rawData !== items && (
+        {currentCategoryName !== undefined && (
           <>
             <Divider
               variant="fullWidth"
@@ -70,13 +69,15 @@ const Category: React.FC<{
                 flexGrow: 1
               }}
             />
-            <Button
-              color="error"
-              variant="text"
-              sx={{ margin: '2px' }}
-              onClick={selectFilterHandle}>
-              No Filter
-            </Button>
+            <Link href={'/'}>
+              <Button
+                color="error"
+                variant="text"
+                sx={{ margin: '2px' }}
+                onClick={selectFilterHandle}>
+                No Filter
+              </Button>
+            </Link>
           </>
         )}
       </ButtonGroup>

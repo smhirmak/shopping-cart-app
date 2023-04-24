@@ -27,6 +27,7 @@ const Product: React.FC<{
               position={'absolute'}
               top={'0'}
               right={'0'}
+              margin={0.6}
               sx={{ backgroundColor: '#000', color: '#fff' }}>
               Free Shipping
             </Box>
