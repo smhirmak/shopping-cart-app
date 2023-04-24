@@ -8,11 +8,9 @@ import React, { useContext, useEffect, useState } from 'react';
 const Category: React.FC<{
   res: IProduct[];
   categories: string[];
-  products: IProduct[];
-}> = ({ res, categories, products }) => {
+}> = ({ res, categories }) => {
   const [rawData, setRawData] = useState<IProduct[]>([]);
-  const [isSelecet, setIsSelecet] = useState(true);
-  const { items, setItems } = useContext(CartContext);
+  const { setItems } = useContext(CartContext);
 
   useEffect(() => {
     setItems(res);
@@ -21,7 +19,6 @@ const Category: React.FC<{
 
   const selectFilterHandle = () => {
     setItems(rawData);
-    setIsSelecet(true);
   };
 
   const route = useRouter();

@@ -15,8 +15,6 @@ export interface ICartContext {
   setItems: React.Dispatch<React.SetStateAction<IProduct[]>>;
   totalQuantity: number;
   setTotalQuantity: React.Dispatch<React.SetStateAction<number>>;
-  isHover: boolean;
-  setIsHover: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface IChildren {
@@ -31,9 +29,7 @@ export const CartContext = React.createContext<ICartContext>({
   items: [],
   setItems: () => {},
   totalQuantity: 0,
-  setTotalQuantity: () => {},
-  isHover: false,
-  setIsHover: () => {}
+  setTotalQuantity: () => {}
 });
 
 export const CartContextProvider: React.FC<IChildren> = ({ children }) => {
@@ -78,7 +74,6 @@ export const CartContextProvider: React.FC<IChildren> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, []);
   const [anchor, setAnchor] = useState<boolean>(false);
   const [items, setItems] = useState<IProduct[]>([]);
-  const [isHover, setIsHover] = useState(false);
   const [totalQuantity, setTotalQuantity] = useState<number>(0);
 
   return (
@@ -91,9 +86,7 @@ export const CartContextProvider: React.FC<IChildren> = ({ children }) => {
         items,
         setItems,
         totalQuantity,
-        setTotalQuantity,
-        isHover,
-        setIsHover
+        setTotalQuantity
       }}>
       {children}
     </CartContext.Provider>

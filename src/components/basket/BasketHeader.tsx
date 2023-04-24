@@ -1,6 +1,6 @@
 import { CartContext } from '@/context/cart-context';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Badge, Box, Icon, Typography } from '@mui/material';
+import { Badge, Box, Typography } from '@mui/material';
 import React, { useContext } from 'react';
 
 const BasketHeader: React.FC = () => {

@@ -10,7 +10,6 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const ProductDetail: React.FC<{ productDetail: IProduct }> = ({ productDetail }) => {
   const descriptionScroll = () => {
-    // window.scrollTo({ top: 740 });
     document.getElementById(productDetail.images[0])?.scrollIntoView();
   };
   const reviewsScroll = () => {

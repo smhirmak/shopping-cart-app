@@ -1,6 +1,5 @@
 import { IProduct } from '@/types/IProduct';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
-import { Button } from '@mui/material';
 import React, { useContext } from 'react';
 import { CartContext } from '../../context/cart-context';
 import IconButton from '@mui/material/IconButton';

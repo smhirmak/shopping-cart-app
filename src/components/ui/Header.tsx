@@ -1,5 +1,5 @@
 import { IProduct } from '@/types/IProduct';
-import { Button, Container, Divider, Grid, Typography } from '@mui/material';
+import { Container, Divider, Grid, Typography } from '@mui/material';
 import Link from 'next/link';
 import Basket from '../basket/Basket';
 import BasketButton from '../buttons/BasketButton';
@@ -54,7 +54,7 @@ const Header: React.FC<{ categories: string[]; products: IProduct[] }> = ({
           </Grid>
         </Grid>
         <Grid container display={'flex'} justifyContent={'center'} alignItems={'center'}>
-          <Category res={products} products={products} categories={categories} />
+          <Category res={products} categories={categories} />
         </Grid>
         <Divider sx={{ mb: 2 }} />
       </Container>
