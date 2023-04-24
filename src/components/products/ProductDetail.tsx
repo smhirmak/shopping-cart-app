@@ -26,13 +26,17 @@ const ProductDetail: React.FC<{ productDetail: IProduct }> = ({ productDetail })
           <Grid item xs={6}>
             <Box>
               <Box display={'flex'} alignItems={'center'}>
-                <Link
-                  href={`/search?q=${productDetail.brand}`}
-                  style={{
-                    marginRight: 10
-                  }}
-                  legacyBehavior>
-                  <a style={{ fontSize: 24, fontWeight: 700 }}>{productDetail.brand}</a>
+                <Link href={`/search?q=${productDetail.brand}`} legacyBehavior>
+                  <a
+                    style={{
+                      marginRight: 7,
+                      fontSize: 24,
+                      fontWeight: 700,
+                      textDecoration: 'none',
+                      color: 'black'
+                    }}>
+                    {productDetail.brand}
+                  </a>
                 </Link>
                 <Typography variant="h5" fontWeight={400} color={'GrayText'}>
                   {productDetail.title}
@@ -58,7 +62,7 @@ const ProductDetail: React.FC<{ productDetail: IProduct }> = ({ productDetail })
               </Typography>
               <AddToCartButton item={productDetail} />
               <Link
-                href={`/search?q=${productDetail.category}`}
+                href={`/category/${productDetail.category}`}
                 style={{ textDecoration: 'none', color: 'gray' }}>
                 {productDetail.category}
               </Link>

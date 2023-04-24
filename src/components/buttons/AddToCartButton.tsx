@@ -40,7 +40,6 @@ const AddToCartButton: React.FC<{
       <Button
         onMouseOver={() => setIsHover(false)}
         onMouseOut={() => setIsHover(true)}
-        sx={{ mt: 1 }}
         fullWidth
         variant="contained"
         color="success"
