@@ -17,7 +17,6 @@ const Category: React.FC<{ searchCategoryResponse: IProduct[] }> = ({ searchCate
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const params = context.params?.categoryName;
-  console.log(params);
 
   const searchCategoryRawResponse = await axios
     .get(`https://dummyjson.com/products/category/${params}`)
@@ -30,7 +29,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     ...item,
     quantity: 1
   }));
-  console.log(searchCategoryResponse);
 
   return {
     props: {

@@ -31,7 +31,7 @@ const Header: React.FC<{ categories: string[]; products: IProduct[] }> = ({
             <img src="/shopping-cart-app-logo.png" width={125} height={100} />
           </Link>
           <Typography variant="h4" component="h4" sx={{ ml: 3 }}>
-            <Link href="/" style={{ textDecoration: 'none', color: 'ButtonText' }}>
+            <Link href="/" style={{ textDecoration: 'none', color: 'ButtonText', fontWeight: 500 }}>
               Shopping Cart App
             </Link>
           </Typography>

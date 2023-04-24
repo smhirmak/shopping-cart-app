@@ -11,12 +11,11 @@ const AddToCartButton: React.FC<{
   item: IProduct;
 }> = ({ item }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { dispatch, setIsHover } = useContext(CartContext);
+  const { dispatch } = useContext(CartContext);
 
   const handleOpen = () => {
     dispatch({ type: 'ADD', payload: item });
     setIsOpen(() => true);
-    console.log('Clicked');
   };
 
   const handleClose = () => {
@@ -37,13 +36,7 @@ const AddToCartButton: React.FC<{
 
   return (
     <CardActions>
-      <Button
-        onMouseOver={() => setIsHover(false)}
-        onMouseOut={() => setIsHover(true)}
-        fullWidth
-        variant="contained"
-        color="success"
-        onClick={handleOpen}>
+      <Button fullWidth variant="contained" color="success" onClick={handleOpen}>
         Add to Cart
       </Button>
       <Modal open={isOpen} onClose={handleClose}>

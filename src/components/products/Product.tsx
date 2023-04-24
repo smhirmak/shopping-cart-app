@@ -1,34 +1,24 @@
 import { IProduct } from '@/types/IProduct';
-import { Box, Button, Card, CardContent, Rating, Typography } from '@mui/material';
-import React, { useEffect, useState, useContext } from 'react';
+import { Box, Card, Rating, Typography } from '@mui/material';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 import AddToCartButton from '../buttons/AddToCartButton';
-import { useRouter } from 'next/router';
-import { CartContext } from '@/context/cart-context';
 
 const Product: React.FC<{
   item: IProduct;
 }> = ({ item }) => {
   const [imageChange, setImageChange] = useState(item.thumbnail);
-  const { isHover } = useContext(CartContext);
-
-  const router = useRouter();
 
   useEffect(() => {
     setImageChange(item.thumbnail);
   }, [item]);
 
-  const productCardClickHandle = () => {
-    {
-      isHover && router.push(`/${item.id}`);
-    }
-  };
-
   return (
     <Card
-      sx={{ height: 400, boxShadow: 5, cursor: 'pointer' }}
+      sx={{ height: 380, boxShadow: 5, cursor: 'pointer' }}
       onMouseOver={() => setImageChange(item.images[2])}
       onMouseOut={() => setImageChange(item.thumbnail)}>
-      <Box component={'div'} onClick={productCardClickHandle}>
+      <Link href={`/${item.id}`} style={{ textDecoration: 'none', color: 'black' }}>
         <Box position={'relative'}>
           {item.price > 45 && (
             <Box
@@ -49,25 +39,19 @@ const Product: React.FC<{
           }}
           src={imageChange}
         />
-        <CardContent>
-          <Box
-            display={'block'}
-            flexDirection={'column'}
-            alignItems={'center'}
-            textAlign={'center'}>
-            <Typography noWrap>{item.title}</Typography>
-            <Typography marginTop={1.5}>{item.price}$</Typography>
-            <Rating
-              sx={{ marginTop: 1.5 }}
-              name="size-small"
-              value={item.rating}
-              precision={0.5}
-              size="small"
-              readOnly
-            />
-          </Box>
-        </CardContent>
-      </Box>
+        <Box display={'block'} flexDirection={'column'} alignItems={'center'} textAlign={'center'}>
+          <Typography noWrap>{item.title}</Typography>
+          <Typography marginTop={1.5}>{item.price}$</Typography>
+          <Rating
+            sx={{ marginY: 1.5 }}
+            name="size-small"
+            value={item.rating}
+            precision={0.5}
+            size="small"
+            readOnly
+          />
+        </Box>
+      </Link>
       <AddToCartButton item={item} />
     </Card>
   );

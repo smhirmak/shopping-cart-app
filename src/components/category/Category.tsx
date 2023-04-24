@@ -1,6 +1,6 @@
 import { CartContext } from '@/context/cart-context';
 import { IProduct } from '@/types/IProduct';
-import { Box, Button, Divider } from '@mui/material';
+import { Box, Button, ButtonGroup, Divider } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
 
 const Category: React.FC<{
@@ -30,26 +30,39 @@ const Category: React.FC<{
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', pt: 1, pb: 1 }}>
-      {categories.map((category: any, i: number) => (
-        <Box
-          key={i}
-          sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}>
-          <Button
-            variant="text"
-            color={isSelecet ? 'inherit' : 'error'}
-            sx={{ margin: '2px' }}
-            onClick={() => {
-              filteredCategory(category);
-              setIsSelecet(false);
+      <ButtonGroup variant="text" sx={{ margin: '2px' }}>
+        {categories.map((category: any, i: number) => (
+          <Box
+            key={i}
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center'
             }}>
-            {category}
-          </Button>
-          {i != categories.length - 1 && (
+            <Button
+              color={isSelecet ? 'inherit' : 'error'}
+              onClick={() => {
+                filteredCategory(category);
+                setIsSelecet(false);
+              }}>
+              {category}
+            </Button>
+
+            {i != categories.length - 1 && (
+              <Divider
+                variant="fullWidth"
+                orientation="vertical"
+                sx={{
+                  flexGrow: 1
+                }}
+              />
+            )}
+          </Box>
+        ))}
+
+        {rawData !== items && (
+          <>
             <Divider
               variant="fullWidth"
               orientation="vertical"
@@ -57,15 +70,16 @@ const Category: React.FC<{
                 flexGrow: 1
               }}
             />
-          )}
-        </Box>
-      ))}
-
-      {rawData !== items && (
-        <Button color="error" variant="text" sx={{ margin: '2px' }} onClick={selectFilterHandle}>
-          No Filter
-        </Button>
-      )}
+            <Button
+              color="error"
+              variant="text"
+              sx={{ margin: '2px' }}
+              onClick={selectFilterHandle}>
+              No Filter
+            </Button>
+          </>
+        )}
+      </ButtonGroup>
     </Box>
   );
 };
