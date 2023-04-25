@@ -3,6 +3,7 @@ import { Box, Card, Rating, Typography } from '@mui/material';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import AddToCartButton from '../buttons/AddToCartButton';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Product: React.FC<{
   item: IProduct;
@@ -12,6 +13,8 @@ const Product: React.FC<{
   useEffect(() => {
     setImageChange(item.thumbnail);
   }, [item]);
+
+  const matches = useMediaQuery('(min-width:600px)');
 
   return (
     <Card
@@ -33,13 +36,18 @@ const Product: React.FC<{
             </Box>
           )}
         </Box>
-        <img
-          style={{
-            width: '260px',
-            height: '200px'
-          }}
-          src={imageChange}
-        />
+        <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
+          <img
+            style={{
+              width: '260px',
+              // maxWidth: 'auto',
+              // minWidth: '243px',
+              height: '200px',
+              marginBottom: 10
+            }}
+            src={imageChange}
+          />
+        </Box>
         <Box display={'block'} flexDirection={'column'} alignItems={'center'} textAlign={'center'}>
           <Typography noWrap>{item.title}</Typography>
           <Typography marginTop={1.5}>{item.price}$</Typography>

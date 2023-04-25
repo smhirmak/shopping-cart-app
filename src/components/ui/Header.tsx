@@ -6,11 +6,16 @@ import BasketButton from '../buttons/BasketButton';
 import Category from '../category/Category';
 import SearchBar from '../searchBar/SearchBar';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Header: React.FC<{ categories: string[]; products: IProduct[] }> = ({
   categories,
   products
 }) => {
+  const themePage = useTheme();
+  const isMobile = useMediaQuery(themePage.breakpoints.down('md'));
+
   return (
     <>
       <Link
@@ -25,31 +30,44 @@ const Header: React.FC<{ categories: string[]; products: IProduct[] }> = ({
           flexDirection={'row'}
           justifyContent={'center'}
           alignItems={'center'}
-          marginTop={3}
+          marginTop={isMobile ? 1 : 3}
           columnSpacing={0}>
           <Grid
             item
-            xs={4}
+            xs={12}
+            lg={4}
             display={'flex'}
-            flexDirection={'row'}
-            justifyContent={''}
-            alignItems={'center'}>
+            flexDirection={isMobile ? 'column' : 'row'}
+            justifyContent={isMobile ? 'center' : ''}
+            alignItems={'center'}
+            marginBottom={2}>
             <Link href="/">
-              <img src="/shopping-cart-app-logo.png" width={125} height={100} />
+              <img
+                src="/shopping-cart-app-logo.png"
+                width={isMobile ? 75 : 125}
+                height={isMobile ? 50 : 100}
+              />
             </Link>
-            <Typography variant="h4" component="h4" sx={{ ml: 3 }}>
+            <Typography
+              variant={isMobile ? 'h5' : 'h4'}
+              component={isMobile ? 'h5' : 'h4'}
+              sx={{ ml: 3 }}>
               <Link
                 href="/"
-                style={{ textDecoration: 'none', color: 'ButtonText', fontWeight: 500 }}>
+                style={{
+                  textDecoration: 'none',
+                  color: 'ButtonText',
+                  fontWeight: 500
+                }}>
                 Shopping Cart App
               </Link>
             </Typography>
           </Grid>
-          <Grid item xs={5} display={'flex'} justifyContent={'center'}>
+          <Grid item xs={12} md={5} display={'flex'} justifyContent={'center'}>
             <SearchBar />
           </Grid>
-          <Grid item xs={3} display={'flex'} justifyContent={'center'}>
-            <BasketButton badge={true} text="Cart" />
+          <Grid item xs={12} md={3} display={'flex'} justifyContent={'end'}>
+            <BasketButton badge={true} text={!isMobile ? 'Cart' : undefined} />
             <Basket />
           </Grid>
         </Grid>

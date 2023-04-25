@@ -3,9 +3,13 @@ import { IconButton, TextField, Typography } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const SearchBar: React.FC = () => {
   const [searchText, setSearchText] = useState('');
+  const themePage = useTheme();
+  const isMobile = useMediaQuery(themePage.breakpoints.down('md'));
 
   const router = useRouter();
 
@@ -27,8 +31,8 @@ const SearchBar: React.FC = () => {
         onChange={changeHandle}
         value={searchText}
         color="success"
-        size="medium"
-        sx={{ width: '400px', padding: 0, margin: 0 }}
+        size={isMobile ? 'small' : 'medium'}
+        sx={{ width: isMobile ? '300px' : '400px' }}
         InputProps={{
           startAdornment: <SearchIcon />,
           endAdornment: (
