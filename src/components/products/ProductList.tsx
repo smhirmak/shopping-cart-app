@@ -8,7 +8,7 @@ const ProductList: React.FC<{ items: IProduct[] }> = ({ items }) => {
     <Grid
       container
       item
-      xs={11}
+      xs={12}
       sm={10}
       md={9}
       lg={9}
@@ -19,15 +19,7 @@ const ProductList: React.FC<{ items: IProduct[] }> = ({ items }) => {
       alignItems={'center'}>
       {items.map((item, i) => {
         return (
-          <Grid
-            item
-            key={i}
-            xs={12}
-            sm={9}
-            md={6}
-            lg={3}
-            display={'flex'}
-            justifyContent={'center'}>
+          <Grid item key={i} xs={6} sm={9} md={6} lg={3} display={'flex'} justifyContent={'center'}>
             <Box>
               <Product item={item} />
             </Box>

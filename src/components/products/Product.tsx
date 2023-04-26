@@ -39,16 +39,22 @@ const Product: React.FC<{
         <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
           <img
             style={{
-              width: '260px',
+              // width: '160px',
+              width: '11.5rem',
               // maxWidth: 'auto',
               // minWidth: '243px',
-              height: '200px',
+              height: '150px',
               marginBottom: 10
             }}
             src={imageChange}
           />
         </Box>
-        <Box display={'block'} flexDirection={'column'} alignItems={'center'} textAlign={'center'}>
+        <Box
+          display={'block'}
+          flexDirection={'column'}
+          alignItems={'center'}
+          textAlign={'center'}
+          paddingX={0.5}>
           <Typography noWrap>{item.title}</Typography>
           <Typography marginTop={1.5}>{item.price}$</Typography>
           <Rating
