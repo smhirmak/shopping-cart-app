@@ -20,7 +20,7 @@ const Product: React.FC<{
 
   return (
     <Card
-      sx={{ height: 380, boxShadow: 5, cursor: 'pointer' }}
+      sx={{ height: isMobile ? 360 : 380, boxShadow: 5, cursor: 'pointer' }}
       onMouseOver={() => setImageChange(item.images[2])}
       onMouseOut={() => setImageChange(item.thumbnail)}>
       <Link href={`/${item.id}`} style={{ textDecoration: 'none', color: 'black' }}>
@@ -42,10 +42,10 @@ const Product: React.FC<{
           <img
             style={{
               // width: '160px',
-              width: isMobile ? '11.5rem' : '16.5rem',
+              width: isMobile ? '100%' : '100%',
               // maxWidth: 'auto',
               // minWidth: '243px',
-              height: isMobile ? '11.5rem' : '12.5rem',
+              height: isMobile ? '180px' : '12.5rem',
               marginBottom: 10
             }}
             src={imageChange}

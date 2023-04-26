@@ -71,13 +71,13 @@ const ProductDetail: React.FC<{ productDetail: IProduct }> = ({ productDetail })
               duration={350}
               autoPlay={false}
               sx={{
-                width: isMobile ? '200px' : '450px',
+                width: isMobile ? '100%' : '450px',
                 height: isMobile ? '200px' : '300px',
                 mt: isMobile ? 5 : 0
               }}>
               {productDetail.images.map((image, i) => (
                 <img
-                  width={isMobile ? '200px' : '450px'}
+                  width={isMobile ? '100%' : '450px'}
                   height={isMobile ? '125px' : '250px'}
                   key={i}
                   src={image}
@@ -181,7 +181,7 @@ const ProductDetail: React.FC<{ productDetail: IProduct }> = ({ productDetail })
                 id={image}
                 key={i}
                 src={image}
-                width={isMobile ? '300px' : ''}
+                width={isMobile ? '80%' : ''}
                 style={{ marginBottom: 10 }}
               />
               <Typography marginBottom={4}>
