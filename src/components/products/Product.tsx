@@ -1,9 +1,9 @@
 import { IProduct } from '@/types/IProduct';
 import { Box, Card, Rating, Typography } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import AddToCartButton from '../buttons/AddToCartButton';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Product: React.FC<{
   item: IProduct;

@@ -1,15 +1,19 @@
 import { IProduct } from '@/types/IProduct';
 import RemoveIcon from '@mui/icons-material/Remove';
+import IconButton from '@mui/material/IconButton';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import React, { useContext } from 'react';
 import { CartContext } from '../../context/cart-context';
-import IconButton from '@mui/material/IconButton';
 
 const DecreaseButton: React.FC<{ item: IProduct }> = ({ item }) => {
   const { dispatch, setTotalQuantity } = useContext(CartContext);
+  const themePage = useTheme();
+  const isMobile = useMediaQuery(themePage.breakpoints.down('md'));
 
   return (
     <IconButton
-      sx={{ margin: '2px' }}
+      sx={{ margin: isMobile ? 0 : '2px' }}
       color="error"
       onClick={() => {
         if (item?.quantity > 1) {

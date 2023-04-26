@@ -1,12 +1,21 @@
 import { IProduct } from '@/types/IProduct';
-import { Box, Container, Grid, Rating, Typography, Button, ButtonGroup } from '@mui/material';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import {
+  Box,
+  Breadcrumbs,
+  Button,
+  ButtonGroup,
+  Container,
+  Divider,
+  Grid,
+  Rating,
+  Typography
+} from '@mui/material';
 import Link from 'next/link';
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import AddToCartButton from '../buttons/AddToCartButton';
-import { Divider, Breadcrumbs } from '@mui/material';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const ProductDetail: React.FC<{ productDetail: IProduct }> = ({ productDetail }) => {
   const descriptionScroll = () => {

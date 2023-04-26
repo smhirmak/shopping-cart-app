@@ -1,10 +1,10 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton, TextField, Typography } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
-import { useRouter } from 'next/router';
-import React, { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 
 const SearchBar: React.FC = () => {
   const [searchText, setSearchText] = useState('');

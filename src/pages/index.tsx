@@ -1,10 +1,9 @@
-import { Container, Grid, Typography } from '@mui/material';
-import Head from 'next/head';
-
 import Basket from '@/components/basket/Basket';
 import ProductList from '@/components/products/ProductList';
 import { CartContext } from '@/context/cart-context';
 import { IProduct } from '@/types/IProduct';
+import { Container, Grid, Typography } from '@mui/material';
+import Head from 'next/head';
 import { useContext } from 'react';
 
 const Home: React.FC<{ products: IProduct[] | any }> = ({ products }) => {

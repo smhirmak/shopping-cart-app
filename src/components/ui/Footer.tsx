@@ -3,6 +3,8 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { Box, Container, Fab, Grid, Typography, Zoom } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { useCallback } from 'react';
 import MediaLinks from '../links/MediaLinks';
@@ -17,6 +19,9 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
+  const themePage = useTheme();
+  const isMobile = useMediaQuery(themePage.breakpoints.down('md'));
+
   return (
     <Box bgcolor={'#232F3E'}>
       <Container maxWidth={'xl'} sx={{ pb: 10 }}>
@@ -27,9 +32,9 @@ const Footer = () => {
               role="presentation"
               sx={{
                 position: 'fixed',
-                bottom: 32,
-                right: 32,
-                zIndex: 1
+                bottom: isMobile ? 70 : 32,
+                right: isMobile ? 15 : 32,
+                zIndex: 2
               }}>
               <Fab
                 onClick={scrollToTop}

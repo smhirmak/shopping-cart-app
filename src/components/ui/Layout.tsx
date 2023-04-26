@@ -20,7 +20,6 @@ const Layout: React.FC<{
     <ThemeProvider theme={theme}>
       <Header categories={categories} products={products} />
       {children}
-      {/* <MobileFooter /> */}
       {isMobile && <MobileFooter />}
       <Footer />
     </ThemeProvider>

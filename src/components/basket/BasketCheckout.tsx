@@ -12,7 +12,7 @@ const BasketCheckout = () => {
   }, 0);
 
   return (
-    <>
+    <Box marginBottom={7.5}>
       {state.length > 0 ? (
         <Grid
           container
@@ -31,10 +31,10 @@ const BasketCheckout = () => {
             borderColor: '#d1d1d1',
             borderRadius: 2
           }}
-          zIndex={1}
+          zIndex={2}
           padding={2}
           mt={state.length > 0 ? '0px' : '140px'}>
-          <Grid item padding={'10px'} zIndex={'1'}>
+          <Grid item padding={'10px'} zIndex={'2'}>
             <Typography color={'#000'}>Total: {total}$</Typography>
           </Grid>
           <Grid item>
@@ -56,7 +56,7 @@ const BasketCheckout = () => {
           </Typography>
         </Box>
       )}
-    </>
+    </Box>
   );
 };
 

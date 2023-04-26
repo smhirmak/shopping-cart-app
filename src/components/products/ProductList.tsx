@@ -1,7 +1,6 @@
-import React from 'react';
-
 import { IProduct } from '@/types/IProduct';
 import { Box, Grid } from '@mui/material';
+import React from 'react';
 import Product from './Product';
 
 const ProductList: React.FC<{ items: IProduct[] }> = ({ items }) => {

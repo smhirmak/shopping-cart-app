@@ -1,13 +1,13 @@
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Badge, Box, Button, Divider, Typography } from '@mui/material';
-import React, { useContext } from 'react';
 import { CartContext } from '@/context/cart-context';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Badge, Box, Button, Divider } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import React, { useContext } from 'react';
 
 const BasketButton: React.FC<{
   text?: string | undefined;
-  badge: boolean;
+  badge?: boolean;
 }> = ({ text, badge }) => {
   const { setAnchor, totalQuantity } = useContext(CartContext);
   const themePage = useTheme();
@@ -18,7 +18,6 @@ const BasketButton: React.FC<{
       <Button
         variant="contained"
         onClick={() => setAnchor(true)}
-        size={isMobile ? 'small' : 'large'}
         color="success"
         startIcon={
           badge && (

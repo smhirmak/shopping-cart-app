@@ -1,13 +1,13 @@
 import { IProduct } from '@/types/IProduct';
-import { Container, Divider, Grid, Typography } from '@mui/material';
-import Link from 'next/link';
-import Basket from '../basket/Basket';
-import BasketButton from '../buttons/BasketButton';
-import Category from '../category/Category';
-import SearchBar from '../searchBar/SearchBar';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import { Container, Divider, Grid, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Link from 'next/link';
+import BasketButton from '../buttons/BasketButton';
+import Category from '../category/Category';
+import MobileCategory from '../category/MobileCategory';
+import SearchBar from '../searchBar/SearchBar';
 
 const Header: React.FC<{ categories: string[]; products: IProduct[] }> = ({
   categories,
@@ -67,12 +67,15 @@ const Header: React.FC<{ categories: string[]; products: IProduct[] }> = ({
             <SearchBar />
           </Grid>
           <Grid item xs={12} md={3} display={'flex'} justifyContent={'end'}>
-            <BasketButton badge={true} text={!isMobile ? 'Cart' : undefined} />
-            <Basket />
+            {!isMobile && <BasketButton badge={true} text={'Cart'} />}
           </Grid>
         </Grid>
         <Grid container display={'flex'} justifyContent={'center'} alignItems={'center'}>
-          <Category res={products} categories={categories} />
+          {!isMobile ? (
+            <Category res={products} categories={categories} />
+          ) : (
+            <MobileCategory res={products} categories={categories} />
+          )}
         </Grid>
         <Divider sx={{ mb: 2 }} />
       </Container>
