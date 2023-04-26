@@ -16,8 +16,13 @@ import Link from 'next/link';
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import AddToCartButton from '../buttons/AddToCartButton';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const ProductDetail: React.FC<{ productDetail: IProduct }> = ({ productDetail }) => {
+  const themePage = useTheme();
+  const isMobile = useMediaQuery(themePage.breakpoints.down('md'));
+
   const descriptionScroll = () => {
     document.getElementById(productDetail.images[0])?.scrollIntoView();
   };
@@ -48,7 +53,16 @@ const ProductDetail: React.FC<{ productDetail: IProduct }> = ({ productDetail })
           {productDetail.title}
         </Link>
       </Breadcrumbs>
-      <Box bgcolor={'#f7f7f7'} boxShadow={1} borderRadius={2} mt={3} mb={3} padding={4}>
+      <Box
+        display={'flex'}
+        justifyContent={'center'}
+        alignItems={'center'}
+        bgcolor={'#f7f7f7'}
+        boxShadow={1}
+        borderRadius={2}
+        mt={isMobile ? 1 : 3}
+        mb={isMobile ? 1 : 3}
+        padding={isMobile ? 1 : 4}>
         <Grid container>
           <Grid item xs={6} display={'flex'} alignItems={'center'} justifyContent={'center'}>
             <Carousel
@@ -56,22 +70,34 @@ const ProductDetail: React.FC<{ productDetail: IProduct }> = ({ productDetail })
               animation="slide"
               duration={350}
               autoPlay={false}
-              sx={{ width: '450px', height: '300px' }}>
+              sx={{
+                width: isMobile ? '200px' : '450px',
+                height: isMobile ? '200px' : '300px',
+                mt: isMobile ? 5 : 0
+              }}>
               {productDetail.images.map((image, i) => (
-                <img height={'250px'} width={'450px'} key={i} src={image} />
+                <img
+                  width={isMobile ? '200px' : '450px'}
+                  height={isMobile ? '125px' : '250px'}
+                  key={i}
+                  src={image}
+                />
               ))}
             </Carousel>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={6} pl={isMobile ? 1 : 0}>
             <Box>
               <Box display={'flex'} flexDirection={'column'}>
-                <Typography variant="h5" fontWeight={400} color={'GrayText'}>
+                <Typography
+                  fontSize={isMobile ? '1.2em' : '2em'}
+                  fontWeight={400}
+                  color={'GrayText'}>
                   {productDetail.title}
                 </Typography>
                 <Link href={`/search?q=${productDetail.brand}`} legacyBehavior>
                   <a
                     style={{
-                      fontSize: 18,
+                      fontSize: isMobile ? '1em' : '1.4em',
                       fontWeight: 700,
                       textDecoration: 'none',
                       color: 'black'
@@ -81,7 +107,7 @@ const ProductDetail: React.FC<{ productDetail: IProduct }> = ({ productDetail })
                 </Link>
               </Box>
               <Divider sx={{ my: 1 }} />
-              <Typography id="desc" variant="subtitle1" my={1}>
+              <Typography id="desc" fontSize={isMobile ? '0.9em' : '1.1em'} my={1}>
                 {productDetail.description}
               </Typography>
               <Box display={'flex'} alignItems={'center'}>
@@ -95,18 +121,33 @@ const ProductDetail: React.FC<{ productDetail: IProduct }> = ({ productDetail })
                 />
                 <Typography>{productDetail.rating}</Typography>
               </Box>
-              <Typography my={1} fontSize={24} fontWeight={500}>
-                {productDetail.price}$
-              </Typography>
-              <Button startIcon={<FavoriteBorderIcon />} color="error">
-                Favorite
-              </Button>
-              <AddToCartButton item={productDetail} />
-              <Link href={`/category/${productDetail.category}`} style={{ textDecoration: 'none' }}>
-                <Typography marginTop={1} color={'gray'}>
-                  {productDetail.category}
+              <Box
+                display={'flex'}
+                alignItems={isMobile ? 'center' : 'start'}
+                justifyContent={'center'}
+                flexDirection={isMobile ? 'row' : 'column'}>
+                <Typography
+                  mt={isMobile ? 0.5 : 1}
+                  pr={isMobile ? 1.5 : 0}
+                  fontSize={isMobile ? '1.3em' : '1.5em'}
+                  fontWeight={500}>
+                  {productDetail.price}$
                 </Typography>
-              </Link>
+                <Button size={isMobile ? 'small' : 'large'} color="error">
+                  <FavoriteBorderIcon fontSize={isMobile ? 'small' : 'medium'} />
+                  <Typography fontSize={'1em'}>Favorite</Typography>
+                </Button>
+              </Box>
+              <AddToCartButton item={productDetail} />
+              {!isMobile && (
+                <Link
+                  href={`/category/${productDetail.category}`}
+                  style={{ textDecoration: 'none' }}>
+                  <Typography marginTop={1} color={'gray'}>
+                    {productDetail.category}
+                  </Typography>
+                </Link>
+              )}
             </Box>
           </Grid>
         </Grid>
@@ -121,7 +162,7 @@ const ProductDetail: React.FC<{ productDetail: IProduct }> = ({ productDetail })
         alignItems={'center'}
         marginBottom={5}>
         <Box>
-          <ButtonGroup variant="text" color="inherit" size="large">
+          <ButtonGroup variant="text" color="inherit" size={isMobile ? 'small' : 'large'}>
             <Button onClick={descriptionScroll}>Description</Button>
             <Button onClick={reviewsScroll}>Customer Reviews</Button>
             <Button onClick={specificationsScroll}>Specifications</Button>
@@ -131,11 +172,18 @@ const ProductDetail: React.FC<{ productDetail: IProduct }> = ({ productDetail })
           display={'flex'}
           flexDirection={'column'}
           justifyContent={'center'}
+          alignItems={'center'}
           paddingY={3}
           marginBottom={5}>
           {productDetail.images.map((image, i) => (
             <>
-              <img id={image} key={i} src={image} style={{ marginBottom: 10 }} />
+              <img
+                id={image}
+                key={i}
+                src={image}
+                width={isMobile ? '300px' : ''}
+                style={{ marginBottom: 10 }}
+              />
               <Typography marginBottom={4}>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, veritatis?
               </Typography>

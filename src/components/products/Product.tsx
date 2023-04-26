@@ -4,17 +4,19 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import AddToCartButton from '../buttons/AddToCartButton';
+import { useTheme } from '@mui/material/styles';
 
 const Product: React.FC<{
   item: IProduct;
 }> = ({ item }) => {
   const [imageChange, setImageChange] = useState(item.thumbnail);
 
+  const themePage = useTheme();
+  const isMobile = useMediaQuery(themePage.breakpoints.down('md'));
+
   useEffect(() => {
     setImageChange(item.thumbnail);
   }, [item]);
-
-  const matches = useMediaQuery('(min-width:600px)');
 
   return (
     <Card
@@ -40,10 +42,10 @@ const Product: React.FC<{
           <img
             style={{
               // width: '160px',
-              width: '11.5rem',
+              width: isMobile ? '11.5rem' : '16.5rem',
               // maxWidth: 'auto',
               // minWidth: '243px',
-              height: '150px',
+              height: isMobile ? '11.5rem' : '12.5rem',
               marginBottom: 10
             }}
             src={imageChange}
