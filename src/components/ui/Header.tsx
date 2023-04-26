@@ -8,6 +8,7 @@ import BasketButton from '../buttons/BasketButton';
 import Category from '../category/Category';
 import MobileCategory from '../category/MobileCategory';
 import SearchBar from '../searchBar/SearchBar';
+import Basket from '../basket/Basket';
 
 const Header: React.FC<{ categories: string[]; products: IProduct[] }> = ({
   categories,
@@ -68,6 +69,7 @@ const Header: React.FC<{ categories: string[]; products: IProduct[] }> = ({
           </Grid>
           <Grid item xs={12} md={3} display={'flex'} justifyContent={'end'}>
             {!isMobile && <BasketButton badge={true} text={'Cart'} />}
+            <Basket />
           </Grid>
         </Grid>
         <Grid container display={'flex'} justifyContent={'center'} alignItems={'center'}>

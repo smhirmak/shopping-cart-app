@@ -2,8 +2,12 @@ import { IProduct } from '@/types/IProduct';
 import { Box, Grid } from '@mui/material';
 import React from 'react';
 import Product from './Product';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const ProductList: React.FC<{ items: IProduct[] }> = ({ items }) => {
+  const themePage = useTheme();
+  const isMobile = useMediaQuery(themePage.breakpoints.down('md'));
   return (
     <Grid
       container
@@ -15,7 +19,7 @@ const ProductList: React.FC<{ items: IProduct[] }> = ({ items }) => {
       spacing={3}
       marginBottom={3}
       display={'flex'}
-      justifyContent={'center'}
+      justifyContent={isMobile ? 'center' : 'flex-start'}
       alignItems={'center'}>
       {items.map((item, i) => {
         return (

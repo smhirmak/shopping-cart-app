@@ -6,7 +6,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
-import MobileFooter from './MobileFooter';
+import BottomNavigationBar from './BottomNavigationBar';
 
 const Layout: React.FC<{
   children: React.ReactNode;
@@ -20,7 +20,7 @@ const Layout: React.FC<{
     <ThemeProvider theme={theme}>
       <Header categories={categories} products={products} />
       {children}
-      {isMobile && <MobileFooter />}
+      {isMobile && <BottomNavigationBar />}
       <Footer />
     </ThemeProvider>
   );

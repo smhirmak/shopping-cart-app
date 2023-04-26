@@ -41,13 +41,6 @@ const AddCartModal: React.FC<{
           justifyContent={'center'}
           alignItems={'center'}
           mb={isMobile ? 2 : 5}>
-          <Grid item xs={12} mb={isMobile ? '0.5rem' : '2rem'}>
-            <Button
-              sx={{ borderRadius: '50%', height: isMobile ? '' : '64px' }}
-              onClick={handleClose}>
-              <CloseIcon sx={{ color: '#858585' }} fontSize="large" />
-            </Button>
-          </Grid>
           {isMobile && (
             <Grid xs={12}>
               <Typography

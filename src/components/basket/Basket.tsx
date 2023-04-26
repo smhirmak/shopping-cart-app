@@ -22,7 +22,7 @@ const Basket: React.FC<{}> = () => {
       <Drawer
         PaperProps={{ style: { width: isMobile ? '85%' : '45%', backgroundColor: '#f4f4f4' } }}
         variant="temporary"
-        sx={{ display: 'flex', zIndex: 1 }}
+        sx={{ display: 'flex', zIndex: 3 }}
         anchor={'right'}
         open={anchor}
         onClose={(prev) => setAnchor(!prev)}>

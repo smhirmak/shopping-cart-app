@@ -8,7 +8,7 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
 
-const MobileFooter = () => {
+const BottomNavigationBar = () => {
   const { pathname } = useRouter();
   const { anchor, setAnchor, categoryAnchor, setCategoryAnchor } = useContext(CartContext);
 
@@ -54,4 +54,4 @@ const MobileFooter = () => {
   );
 };
 
-export default MobileFooter;
+export default BottomNavigationBar;

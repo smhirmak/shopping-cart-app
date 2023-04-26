@@ -11,8 +11,6 @@ const AddToCartButton: React.FC<{
 }> = ({ item }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { dispatch } = useContext(CartContext);
-  const themePage = useTheme();
-  const isMobile = useMediaQuery(themePage.breakpoints.down('md'));
 
   const handleOpen = () => {
     dispatch({ type: 'ADD', payload: item });
