@@ -1,9 +1,24 @@
 import { CartContext } from '@/context/cart-context';
 import { IProduct } from '@/types/IProduct';
-import { Box, Button, Drawer } from '@mui/material';
+import { Box, Button, Drawer, Typography } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
+import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
+import LaptopMacIcon from '@mui/icons-material/LaptopMac';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import MasksIcon from '@mui/icons-material/Masks';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
+import ChairIcon from '@mui/icons-material/Chair';
+
+const iconList = [
+  <PhoneIphoneIcon />,
+  <LaptopMacIcon />,
+  <ShoppingCartIcon />,
+  <MasksIcon />,
+  <RestaurantIcon />,
+  <ChairIcon />
+];
 
 const MobileCategory: React.FC<{
   res: IProduct[];
@@ -35,15 +50,22 @@ const MobileCategory: React.FC<{
         anchor={'left'}
         open={categoryAnchor}
         onClose={(prev) => setCategoryAnchor(!prev)}>
+        <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
+          <Typography fontSize={'32px'} fontWeight={600}>
+            Categories
+          </Typography>
+        </Box>
         {categories.map((category: any, i: number) => (
           <Box
             key={i}
             sx={{
               display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center'
+              flexDirection: 'row',
+              justifyContent: 'start',
+              alignItems: 'center',
+              ml: 1
             }}>
+            {iconList[i]}
             <Link href={`/category/${category}`}>
               <Button
                 color={currentCategoryName !== category ? 'success' : 'error'}

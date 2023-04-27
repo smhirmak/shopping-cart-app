@@ -3,9 +3,20 @@ import { IProduct } from '@/types/IProduct';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import React from 'react';
+import Head from 'next/head';
 
 const DetailPage: React.FC<{ productDetail: IProduct }> = ({ productDetail }) => {
-  return <ProductDetail productDetail={productDetail} />;
+  return (
+    <>
+      <Head>
+        <title>{productDetail.title}</title>
+        <meta name="description" content="Shopping cart app" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="shop-ico.png" />
+      </Head>
+      <ProductDetail productDetail={productDetail} />
+    </>
+  );
 };
 
 export default DetailPage;

@@ -29,7 +29,7 @@ const BottomNavigationBar = () => {
 
   return (
     <Paper
-      sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, width: '100%', zIndex: 3 }}
+      sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, width: '100%', zIndex: 4 }}
       elevation={5}>
       <BottomNavigation showLabels>
         <BottomNavigationAction

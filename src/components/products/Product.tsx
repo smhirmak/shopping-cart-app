@@ -46,10 +46,7 @@ const Product: React.FC<{
         <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
           <img
             style={{
-              // width: '160px',
               width: isMobile ? '180px' : '250px',
-              // maxWidth: 'auto',
-              // minWidth: '243px',
               height: isMobile ? '180px' : '12.5rem',
               marginBottom: 10
             }}

@@ -40,7 +40,8 @@ const AddCartModal: React.FC<{
           display={'flex'}
           justifyContent={'center'}
           alignItems={'center'}
-          mb={isMobile ? 2 : 5}>
+          mb={isMobile ? 2 : 4}
+          mt={isMobile ? 1 : 4}>
           {isMobile && (
             <Grid xs={12}>
               <Typography

@@ -20,7 +20,7 @@ const Basket: React.FC<{}> = () => {
   return (
     <Box>
       <Drawer
-        PaperProps={{ style: { width: isMobile ? '85%' : '45%', backgroundColor: '#f4f4f4' } }}
+        PaperProps={{ style: { width: isMobile ? '85%' : '600px', backgroundColor: '#f4f4f4' } }}
         variant="temporary"
         sx={{ display: 'flex', zIndex: 3 }}
         anchor={'right'}
@@ -142,7 +142,7 @@ const Basket: React.FC<{}> = () => {
                     lg={3.9}
                     display={'flex'}
                     flexDirection={isMobile ? 'column' : 'row'}
-                    justifyContent={'center'}
+                    justifyContent={isMobile ? 'center' : 'start'}
                     alignItems={'center'}
                     pl={isMobile ? 0 : 5}>
                     <Grid item>
