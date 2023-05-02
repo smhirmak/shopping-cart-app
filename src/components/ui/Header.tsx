@@ -9,7 +9,6 @@ import Category from '../category/Category';
 import MobileCategory from '../category/MobileCategory';
 import SearchBar from '../searchBar/SearchBar';
 import Basket from '../basket/Basket';
-import FavoritesButton from '../buttons/FavoritesButton';
 
 const Header: React.FC<{ categories: string[]; products: IProduct[] }> = ({
   categories,
