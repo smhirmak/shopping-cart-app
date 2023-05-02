@@ -3,11 +3,21 @@ import { IProduct } from '@/types/IProduct';
 import { Container, Grid } from '@mui/material';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React from 'react';
 
-const Search: React.FC<{ searchResponse: IProduct[] }> = ({ searchResponse }) => {
+const SearchPage: React.FC<{ searchResponse: IProduct[] }> = ({ searchResponse }) => {
+  const router = useRouter();
+  const { query } = router;
   return (
     <Container maxWidth={'xl'}>
+      <Head>
+        <title>{query.q} - Shopping Cart App</title>
+        <meta name="description" content="Shopping cart app" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="shop-ico.png" />
+      </Head>
       <Grid container spacing={3} display={'flex'} justifyContent={'center'} alignItems={'center'}>
         <ProductList items={searchResponse} />
       </Grid>
@@ -34,4 +44,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-export default Search;
+export default SearchPage;

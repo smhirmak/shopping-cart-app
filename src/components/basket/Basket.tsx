@@ -2,20 +2,26 @@ import { IProduct } from '@/types/IProduct';
 import { Box, Divider, Drawer, Grid, Rating, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../context/cart-context';
 import DecreaseButton from '../buttons/DecreaseButton';
 import IncreaseButton from '../buttons/IncreaseButton';
 import RemoveButton from '../buttons/RemoveButton';
 import BasketCheckout from './BasketCheckout';
 import BasketHeader from './BasketHeader';
+import BasketProductCart from './BasketProductCart';
+import MobileBasketProductCart from './MobileBasketProductCart';
 
 const Basket: React.FC<{}> = () => {
-  const { state, anchor, setAnchor, setTotalQuantity } = useContext(CartContext);
+  const { anchor, setAnchor, setTotalQuantity } = useContext(CartContext);
+  const [basketData, setBasketData] = useState<any[]>([]);
   let total: any = 0;
 
   const themePage = useTheme();
   const isMobile = useMediaQuery(themePage.breakpoints.down('md'));
+  useEffect(() => {
+    setBasketData(() => JSON.parse(localStorage.getItem('basket') || ''));
+  }, [typeof window !== 'undefined' && localStorage.getItem('basket' || '')]);
 
   return (
     <Box>
@@ -27,11 +33,17 @@ const Basket: React.FC<{}> = () => {
         open={anchor}
         onClose={(prev) => setAnchor(!prev)}>
         <BasketHeader />
-        {state.map((item: IProduct, index) => {
+        {basketData?.map((item: IProduct, index: any) => {
           total = total + item.quantity;
           setTotalQuantity(total);
           return (
-            <Box
+            <>
+              {isMobile ? (
+                <MobileBasketProductCart item={item} index={index} />
+              ) : (
+                <BasketProductCart item={item} index={index} />
+              )}
+              {/* <Box
               sx={{
                 border: 1,
                 borderRadius: 2,
@@ -166,7 +178,8 @@ const Basket: React.FC<{}> = () => {
                   </Grid>
                 </Grid>
               </Grid>
-            </Box>
+            </Box> */}
+            </>
           );
         })}
         <BasketCheckout />

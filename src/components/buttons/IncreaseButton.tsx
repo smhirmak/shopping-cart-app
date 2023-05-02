@@ -10,7 +10,6 @@ const IncreaseButton: React.FC<{ item: IProduct }> = ({ item }) => {
   const { dispatch } = useContext(CartContext);
   const themePage = useTheme();
   const isMobile = useMediaQuery(themePage.breakpoints.down('md'));
-
   return (
     <IconButton
       sx={{ margin: isMobile ? 0 : '2px' }}

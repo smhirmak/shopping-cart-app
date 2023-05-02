@@ -7,8 +7,7 @@ import Head from 'next/head';
 import { useContext } from 'react';
 
 const Home: React.FC<{ products: IProduct[] | any }> = ({ products }) => {
-  const { items, anchor } = useContext(CartContext);
-  console.log(anchor);
+  const { items } = useContext(CartContext);
 
   return (
     <Container maxWidth={'xl'}>

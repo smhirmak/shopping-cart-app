@@ -1,5 +1,5 @@
 import { IProduct } from '@/types/IProduct';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import {
   Box,
@@ -12,12 +12,12 @@ import {
   Rating,
   Typography
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Link from 'next/link';
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import AddToCartButton from '../buttons/AddToCartButton';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 const ProductDetail: React.FC<{ productDetail: IProduct }> = ({ productDetail }) => {
   const themePage = useTheme();
@@ -123,8 +123,8 @@ const ProductDetail: React.FC<{ productDetail: IProduct }> = ({ productDetail })
               </Box>
               <Box
                 display={'flex'}
-                alignItems={isMobile ? 'center' : 'start'}
-                justifyContent={'center'}
+                alignItems={'start'}
+                justifyContent={'start'}
                 flexDirection={isMobile ? 'row' : 'column'}>
                 <Typography
                   mt={isMobile ? 0.5 : 1}
@@ -133,10 +133,6 @@ const ProductDetail: React.FC<{ productDetail: IProduct }> = ({ productDetail })
                   fontWeight={500}>
                   {productDetail.price}$
                 </Typography>
-                <Button size={isMobile ? 'small' : 'large'} color="error">
-                  <FavoriteBorderIcon fontSize={isMobile ? 'small' : 'medium'} />
-                  <Typography fontSize={'1em'}>Favorite</Typography>
-                </Button>
               </Box>
               <AddToCartButton item={productDetail} />
               {!isMobile && (

@@ -18,7 +18,7 @@ const RemoveButton: React.FC<{ item: IProduct }> = ({ item }) => {
   };
 
   return (
-    <IconButton onClick={reomveHandle} sx={{ paddingLeft: isMobile ? 0.5 : 1.5 }}>
+    <IconButton onClick={reomveHandle} sx={{ paddingLeft: isMobile ? 1 : 1.5 }}>
       <RemoveShoppingCartIcon fontSize="small" color="success" />
     </IconButton>
   );

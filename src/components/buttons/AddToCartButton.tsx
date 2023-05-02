@@ -12,14 +12,14 @@ const AddToCartButton: React.FC<{
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { dispatch } = useContext(CartContext);
 
-  const handleOpen = () => {
+  const addToCartHandle = () => {
     dispatch({ type: 'ADD', payload: item });
     setIsOpen(() => true);
   };
 
   return (
     <CardActions>
-      <Button fullWidth variant="contained" color="success" onClick={handleOpen}>
+      <Button fullWidth variant="contained" color="success" onClick={addToCartHandle}>
         Add to Cart
       </Button>
       <AddCartModal item={item} isOpen={isOpen} setIsOpen={setIsOpen} />

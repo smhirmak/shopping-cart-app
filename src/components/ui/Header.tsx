@@ -1,6 +1,6 @@
 import { IProduct } from '@/types/IProduct';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { Container, Divider, Grid, Typography } from '@mui/material';
+import { Container, Divider, Grid, Typography, Box, Button, IconButton } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Link from 'next/link';
@@ -9,6 +9,7 @@ import Category from '../category/Category';
 import MobileCategory from '../category/MobileCategory';
 import SearchBar from '../searchBar/SearchBar';
 import Basket from '../basket/Basket';
+import FavoritesButton from '../buttons/FavoritesButton';
 
 const Header: React.FC<{ categories: string[]; products: IProduct[] }> = ({
   categories,
@@ -67,7 +68,7 @@ const Header: React.FC<{ categories: string[]; products: IProduct[] }> = ({
           <Grid item xs={12} md={5} display={'flex'} justifyContent={'center'}>
             <SearchBar />
           </Grid>
-          <Grid item xs={12} md={3} display={'flex'} justifyContent={'end'}>
+          <Grid item xs={12} md={2} display={'flex'} justifyContent={'end'}>
             {!isMobile && <BasketButton badge={true} text={'Cart'} />}
             <Basket />
           </Grid>

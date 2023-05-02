@@ -3,14 +3,15 @@ import CategoryIcon from '@mui/icons-material/Category';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { BottomNavigation, Paper } from '@mui/material';
+import { Badge, BottomNavigation, Paper } from '@mui/material';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
 
 const BottomNavigationBar = () => {
   const { pathname } = useRouter();
-  const { anchor, setAnchor, categoryAnchor, setCategoryAnchor } = useContext(CartContext);
+  const { anchor, setAnchor, categoryAnchor, setCategoryAnchor, totalQuantity } =
+    useContext(CartContext);
 
   const anchorToggleHandler = () => {
     if (anchor) {
@@ -46,9 +47,13 @@ const BottomNavigationBar = () => {
         <BottomNavigationAction
           label="Basket"
           onClick={anchorToggleHandler}
-          icon={<ShoppingCartIcon />}
+          icon={
+            <Badge badgeContent={totalQuantity} color="success">
+              <ShoppingCartIcon />
+            </Badge>
+          }
         />
-        <BottomNavigationAction disabled label="Favorites" icon={<FavoriteIcon />} />
+        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
       </BottomNavigation>
     </Paper>
   );

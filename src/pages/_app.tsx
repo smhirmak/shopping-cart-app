@@ -17,7 +17,6 @@ export interface MyAppProps extends AppProps {
 
 export default function App(props: MyAppProps) {
   const { Component, pageProps, categories, products } = props;
-
   return (
     <ThemeProvider theme={theme}>
       <CartContextProvider>

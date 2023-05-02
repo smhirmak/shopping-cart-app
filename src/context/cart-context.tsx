@@ -38,43 +38,51 @@ export const CartContext = React.createContext<ICartContext>({
 
 export const CartContextProvider: React.FC<IChildren> = ({ children }) => {
   const reducer = (state: any[], action: IAction) => {
+    let basketData = JSON.parse(localStorage.getItem('basket') || '');
     switch (action.type) {
       case 'ADD':
-        const tempState = state.filter((item) => action.payload.id === item.id);
+        const tempState = state.filter((item: any) => action.payload.id === item.id);
         if (tempState.length > 0) {
+          localStorage.setItem('basket', JSON.stringify(state));
           return state;
         } else {
+          localStorage.setItem('basket', JSON.stringify([...state, action.payload]));
           return [...state, action.payload];
         }
 
       case 'INCREASE':
-        const tempState1 = state.map((item) => {
+        const tempState1 = basketData?.map((item: any) => {
           if (item.id === action.payload.id) {
             return { ...item, quantity: item.quantity + 1 };
           } else {
             return item;
           }
         });
+        localStorage.setItem('basket', JSON.stringify(tempState1));
         return tempState1;
 
       case 'DECREASE':
-        const tempState2 = state.map((item) => {
+        const tempState2 = basketData?.map((item: any) => {
           if (item.id === action.payload.id) {
             return { ...item, quantity: item.quantity - 1 };
           } else {
             return item;
           }
         });
+        localStorage.setItem('basket', JSON.stringify(tempState2));
         return tempState2;
 
       case 'REMOVE':
-        const tempState3 = state.filter((item) => item.id !== action.payload.id);
+        const tempState3 = basketData?.filter((item: any) => item.id !== action.payload.id);
+        localStorage.setItem('basket', JSON.stringify(tempState3));
         return tempState3;
 
       default:
+        localStorage.setItem('basket', JSON.stringify(state));
         return state;
     }
   };
+
   const [state, dispatch] = useReducer(reducer, []);
   const [anchor, setAnchor] = useState<boolean>(false);
   const [categoryAnchor, setCategoryAnchor] = useState<boolean>(false);

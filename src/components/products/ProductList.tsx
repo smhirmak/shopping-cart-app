@@ -1,6 +1,6 @@
 import { IProduct } from '@/types/IProduct';
 import { Box, Grid } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Product from './Product';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -8,6 +8,13 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 const ProductList: React.FC<{ items: IProduct[] }> = ({ items }) => {
   const themePage = useTheme();
   const isMobile = useMediaQuery(themePage.breakpoints.down('md'));
+
+  useEffect(() => {
+    if (localStorage.getItem('basket') == null) {
+      localStorage.setItem('basket', JSON.stringify([]));
+    }
+  }, []);
+
   return (
     <Grid
       container
