@@ -108,7 +108,7 @@ const BasketProductCart: React.FC<{ item: IProduct; index: number }> = ({ item, 
                 <IncreaseButton item={item} />
               </Box>
               {item.quantity !== 1 && <RemoveButton item={item} />}
-              <Box ml={6}>
+              <Box display={'flex'} alignItems={'end'} justifyContent={'end'}>
                 <Typography>{item.quantity * item.price}$</Typography>
               </Box>
             </Box>
