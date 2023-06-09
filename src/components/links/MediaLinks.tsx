@@ -12,7 +12,8 @@ const MediaLinks: React.FC<{ href: string; icon?: any; name: string }> = ({ href
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
-        }}>
+        }}
+        target="_blank">
         {' '}
         <Box display={'flex'}>
           {icon} <Typography variant="subtitle1">{name}</Typography>
