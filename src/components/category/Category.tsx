@@ -37,10 +37,8 @@ const Category: React.FC<{
               justifyContent: 'center',
               alignItems: 'center'
             }}>
-            <Link href={`/category/${category}`}>
-              <Button
-                color={currentCategoryName !== category ? 'success' : 'error'}
-                sx={{ textDecoration: 'none' }}>
+            <Link href={`/category/${category}`} style={{ textDecoration: 'none' }}>
+              <Button color={currentCategoryName !== category ? 'success' : 'error'}>
                 {category}
               </Button>
             </Link>
@@ -66,7 +64,7 @@ const Category: React.FC<{
                 flexGrow: 1
               }}
             />
-            <Link href={'/'}>
+            <Link href={'/'} style={{ textDecoration: 'none' }}>
               <Button
                 color="error"
                 variant="text"

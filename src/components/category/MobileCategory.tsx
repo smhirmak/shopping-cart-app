@@ -66,10 +66,9 @@ const MobileCategory: React.FC<{
               ml: 1
             }}>
             {iconList[i]}
-            <Link href={`/category/${category}`}>
+            <Link href={`/category/${category}`} style={{ textDecoration: 'none' }}>
               <Button
                 color={currentCategoryName !== category ? 'success' : 'error'}
-                sx={{ textDecoration: 'none' }}
                 onClick={() => setCategoryAnchor(false)}>
                 {category}
               </Button>
@@ -78,7 +77,7 @@ const MobileCategory: React.FC<{
         ))}
         {currentCategoryName !== undefined && (
           <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
-            <Link href={'/'}>
+            <Link href={'/'} style={{ textDecoration: 'none' }}>
               <Button
                 color="error"
                 variant="contained"
