@@ -26,10 +26,10 @@ const SearchPage: React.FC<{ searchResponse: IProduct[] }> = ({ searchResponse }
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const params = context.query.q;
+  const query = context.query.q as string;
 
   const searchRawResponse = await axios
-    .get(`https://dummyjson.com/products/search?q=${params}`)
+    .get(`https://dummyjson.com/products/search?q=${query}`)
     .then((res) => res.data.products)
     .catch((error) => {
       return { error: 'Error' };

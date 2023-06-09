@@ -19,7 +19,7 @@ const SearchBar: React.FC = () => {
 
   const submitHandle = (event: any) => {
     event.preventDefault();
-    router.push(`/search?q=${searchText}`);
+    router.push(`/search?q=${searchText.toLowerCase()}`);
     setSearchText('');
   };
 

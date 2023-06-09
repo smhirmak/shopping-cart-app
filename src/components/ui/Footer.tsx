@@ -23,98 +23,100 @@ const Footer = () => {
   const isMobile = useMediaQuery(themePage.breakpoints.down('md'));
 
   return (
-    <Box bgcolor={'#232F3E'}>
-      <Container maxWidth={'xl'} sx={{ pb: 10 }}>
-        <Grid container>
-          {' '}
-          <Zoom in={trigger}>
-            <Box
-              role="presentation"
-              sx={{
-                position: 'fixed',
-                bottom: isMobile ? 70 : 32,
-                right: isMobile ? 15 : 32,
-                zIndex: 2
-              }}>
-              <Fab
-                onClick={scrollToTop}
-                color="primary"
-                size="small"
-                aria-label="Scroll back to top">
-                <KeyboardArrowUpIcon fontSize="medium" />
-              </Fab>
-            </Box>
-          </Zoom>
-        </Grid>
-        <Grid
-          container
-          display={'flex'}
-          justifyContent={'center'}
-          columnSpacing={20}
-          mt={3}
-          bgcolor={'#232F3E'}
-          color={'#c3c3c3'}
-          pt={2}>
-          <Grid item>
-            <Box
-              display={'flex'}
-              flexDirection={'column'}
-              justifyContent={'center'}
-              alignItems={'center'}>
-              <Typography variant="h5" color={'#fff'} mb={2}>
-                Social Media
-              </Typography>
-              <Box display={'flex'} flexDirection={'column'} alignItems={'start'}>
-                <MediaLinks
-                  href="https://github.com/smhirmak"
-                  name="GitHub"
-                  icon={<GitHubIcon sx={{ mr: 1 }} />}
-                />
+    <footer>
+      <Box bgcolor={'#232F3E'}>
+        <Container maxWidth={'xl'} sx={{ pb: 10 }}>
+          <Grid container>
+            {' '}
+            <Zoom in={trigger}>
+              <Box
+                role="presentation"
+                sx={{
+                  position: 'fixed',
+                  bottom: isMobile ? 70 : 32,
+                  right: isMobile ? 15 : 32,
+                  zIndex: 2
+                }}>
+                <Fab
+                  onClick={scrollToTop}
+                  color="primary"
+                  size="small"
+                  aria-label="Scroll back to top">
+                  <KeyboardArrowUpIcon fontSize="medium" />
+                </Fab>
+              </Box>
+            </Zoom>
+          </Grid>
+          <Grid
+            container
+            display={'flex'}
+            justifyContent={'center'}
+            columnSpacing={isMobile ? 2 : 20}
+            mt={3}
+            bgcolor={'#232F3E'}
+            color={'#c3c3c3'}
+            pt={2}>
+            <Grid item>
+              <Box
+                display={'flex'}
+                flexDirection={'column'}
+                justifyContent={'center'}
+                alignItems={'center'}>
+                <Typography variant="h5" color={'#fff'} mb={2}>
+                  Social Media
+                </Typography>
+                <Box display={'flex'} flexDirection={'column'} alignItems={'start'}>
+                  <MediaLinks
+                    href="https://github.com/smhirmak"
+                    name="GitHub"
+                    icon={<GitHubIcon sx={{ mr: 1 }} />}
+                  />
+                  <MediaLinks
+                    href="https://www.linkedin.com/in/muhammed-semih-irmak-307890152/"
+                    name="LinkedIn"
+                    icon={<LinkedInIcon sx={{ mr: 1 }} />}
+                  />
+                  <MediaLinks
+                    href="https://twitter.com/smhirmak"
+                    name="Twitter"
+                    icon={<TwitterIcon sx={{ mr: 1 }} />}
+                  />
+                </Box>
+              </Box>
+            </Grid>
+            <Grid item>
+              <Box
+                display={'flex'}
+                flexDirection={'column'}
+                justifyContent={'center'}
+                alignItems={'center'}>
+                <Typography variant="h5" color={'#fff'} mb={2}>
+                  About
+                </Typography>
                 <MediaLinks
                   href="https://www.linkedin.com/in/muhammed-semih-irmak-307890152/"
-                  name="LinkedIn"
-                  icon={<LinkedInIcon sx={{ mr: 1 }} />}
+                  name={'Who am I?'}
                 />
-                <MediaLinks
-                  href="https://twitter.com/smhirmak"
-                  name="Twitter"
-                  icon={<TwitterIcon sx={{ mr: 1 }} />}
-                />
+                <Typography>Contact me</Typography>
               </Box>
-            </Box>
+            </Grid>
+            <Grid item>
+              <Box
+                display={'flex'}
+                flexDirection={'column'}
+                justifyContent={'center'}
+                alignItems={'center'}>
+                <Typography variant="h5" color={'#fff'} mb={2}>
+                  Help
+                </Typography>
+                <MediaLinks href="/" name="FAQ" />
+                <MediaLinks href="/" name="Your Asistant" />
+              </Box>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Box
-              display={'flex'}
-              flexDirection={'column'}
-              justifyContent={'center'}
-              alignItems={'center'}>
-              <Typography variant="h5" color={'#fff'} mb={2}>
-                About
-              </Typography>
-              <MediaLinks
-                href="https://www.linkedin.com/in/muhammed-semih-irmak-307890152/"
-                name={'Who am I?'}
-              />
-              <Typography>Contact me</Typography>
-            </Box>
-          </Grid>
-          <Grid item>
-            <Box
-              display={'flex'}
-              flexDirection={'column'}
-              justifyContent={'center'}
-              alignItems={'center'}>
-              <Typography variant="h5" color={'#fff'} mb={2}>
-                Help
-              </Typography>
-              <MediaLinks href="/" name="FAQ" />
-              <MediaLinks href="/" name="Your Asistant" />
-            </Box>
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
+        </Container>
+      </Box>
+    </footer>
   );
 };
 
