@@ -1,14 +1,23 @@
 import { IProduct } from '@/types/IProduct';
 import { Box, Grid, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Product from './Product';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { Router } from 'next/router';
 
 const ProductList: React.FC<{ items: IProduct[] }> = ({ items }) => {
   const themePage = useTheme();
   const isMobile = useMediaQuery(themePage.breakpoints.down('md'));
-  console.log(items.length);
+  const [loading, setLoading] = useState(false);
+
+  Router.events.on('routeChangeStart', (url) => {
+    setLoading(true);
+  });
+
+  Router.events.on('routeChangeComplete', (url) => {
+    setLoading(false);
+  });
 
   useEffect(() => {
     if (localStorage.getItem('basket') == null) {
@@ -29,7 +38,7 @@ const ProductList: React.FC<{ items: IProduct[] }> = ({ items }) => {
       display={'flex'}
       justifyContent={isMobile ? 'center' : 'flex-start'}
       alignItems={'center'}>
-      {items.length != 0 ? (
+      {items.length != 0 || !loading ? (
         items.map((item, i) => {
           return (
             <Grid
