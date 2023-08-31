@@ -36,7 +36,7 @@ App.getInitialProps = async () => {
   const products = await productsResponse.map((item: any) => ({ ...item, quantity: 1 }));
 
   return {
-    categories,
-    products
+    categories: await categories,
+    products: await products
   };
 };
