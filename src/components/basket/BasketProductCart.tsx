@@ -9,6 +9,7 @@ import RemoveButton from '../buttons/RemoveButton';
 const BasketProductCart: React.FC<{ item: IProduct; index: number }> = ({ item, index }) => {
   return (
     <Box
+      key={index}
       sx={{
         border: 1,
         borderRadius: 2,
@@ -19,7 +20,6 @@ const BasketProductCart: React.FC<{ item: IProduct; index: number }> = ({ item, 
       }}>
       <Grid
         container
-        key={index}
         sx={{
           display: 'flex',
           justifyContent: 'center',

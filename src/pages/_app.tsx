@@ -32,8 +32,8 @@ export default function App(props: MyAppProps) {
 App.getInitialProps = async () => {
   const productsResponse = await AxiosClient.get('/api/products').then((res) => res.data.products);
   const categoriesResponse = await AxiosClient.get('/api/categories').then((res) => res.data);
-  const categories = categoriesResponse.slice(0, 6);
-  const products = productsResponse.map((item: any) => ({ ...item, quantity: 1 }));
+  const categories = await categoriesResponse.slice(0, 6);
+  const products = await productsResponse.map((item: any) => ({ ...item, quantity: 1 }));
 
   return {
     categories,
