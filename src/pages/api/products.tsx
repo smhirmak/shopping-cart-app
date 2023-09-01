@@ -11,7 +11,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       })
       .catch((error) => {
         reject(error);
-        return res.status(501).json(error);
+        return res.status(404).json(error);
       });
   });
 }
