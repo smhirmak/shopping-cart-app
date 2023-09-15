@@ -22,7 +22,7 @@ const Header: React.FC<{ categories: string[]; products: IProduct[] }> = ({
       <Link
         href={'https://github.com/smhirmak/shopping-cart-app'}
         style={{ textDecoration: 'none', color: 'black' }}>
-        <GitHubIcon sx={{ transform: 'rotate(-45deg)', fontSize: isMobile ? '32px' : '42px' }} />
+        <GitHubIcon sx={{ transform: 'rotate(-45deg)', fontSize: isMobile ? '42px' : '48px' }} />
       </Link>
       <Container maxWidth={'xl'}>
         <Grid
