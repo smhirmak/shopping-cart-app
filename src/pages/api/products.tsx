@@ -5,7 +5,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   return new Promise(async (resolve, reject) => {
     await axios
       .get('https://dummyjson.com/products')
-      .then((data) => {
+
+      .then((data: any) => {
         resolve('success');
         return res.status(200).json(data.data);
       })

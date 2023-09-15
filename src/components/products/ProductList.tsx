@@ -45,9 +45,10 @@ const ProductList: React.FC<{ items: IProduct[] }> = ({ items }) => {
               item
               key={i}
               xs={6}
-              sm={9}
-              md={6}
-              lg={3}
+              sm={6}
+              md={4}
+              lg={4}
+              xl={3}
               display={'flex'}
               justifyContent={'center'}>
               <Box>
