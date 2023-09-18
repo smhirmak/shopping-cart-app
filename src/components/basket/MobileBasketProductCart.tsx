@@ -91,11 +91,16 @@ const BasketProductCart: React.FC<{ item: IProduct; index: number }> = ({ item, 
               <Typography variant="subtitle1">{item.title}</Typography>
               <Rating name="size-small" value={item.rating} precision={0.5} size="small" readOnly />
             </Box>
-            <Box display={'flex'} alignItems={'center'} justifyContent={'center'} pb={1}>
+            <Box
+              display={'flex'}
+              alignItems={'center'}
+              justifyContent={'start'}
+              width={'100%'}
+              pb={1}>
               <Box
                 display={'flex'}
                 flexDirection={'row'}
-                justifyContent={'center'}
+                justifyContent={'start'}
                 alignItems={'center'}
                 borderRadius={6}
                 border={1}>
@@ -108,7 +113,7 @@ const BasketProductCart: React.FC<{ item: IProduct; index: number }> = ({ item, 
                 <IncreaseButton item={item} />
               </Box>
               {item.quantity !== 1 && <RemoveButton item={item} />}
-              <Box display={'flex'} alignItems={'end'} justifyContent={'end'}>
+              <Box position={'absolute'} marginLeft={17}>
                 <Typography>{item.quantity * item.price}$</Typography>
               </Box>
             </Box>
